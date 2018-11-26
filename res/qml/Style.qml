@@ -1,10 +1,13 @@
 pragma Singleton
 import QtQuick 2.0
 QtObject {
-    property color darkGray: "#474747"
-    property color gray: "#a7a7a7"
-    property color lightGray: "#c9c9c9"
+    readonly property color darkGray: "#474747"
+    readonly property color gray: "#a7a7a7"
+    readonly property color lightGray: "#c9c9c9"
 
-    property double lightBulbWidthScaler: 1.4
-    property double lightBulbHeightScaler: 1.2
+    readonly property double lightBulbWidthScaler: 1.4
+    readonly property double lightBulbHeightScaler: 1.2
+
+    readonly property color primary: "#000000"
+    readonly property color accent: "orange"
 }

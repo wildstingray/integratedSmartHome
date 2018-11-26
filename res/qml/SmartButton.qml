@@ -18,7 +18,7 @@ Button {
         anchors.left: parent.left
         anchors.right: parent.right
         height: 4
-        color: "orange"
+        color: Style.accent
     }
 
     Image {
