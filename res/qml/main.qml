@@ -1,5 +1,6 @@
 import QtQuick 2.11
 import QtQuick.Window 2.11
+import QtQuick.Controls.Material 2.2
 //import QtQuick.VirtualKeyboard 2.3
 
 Window {
@@ -7,12 +8,30 @@ Window {
     visible: true
     width: 800
     height: 480
-    title: qsTr("Hello World")
+    title: qsTr("Integrated Smart Home")
+    color: "black"
+    Material.theme: Material.Dark
+    Material.accent: Material.Purple
 
     Item {
         id: mainItem
-        width: 800
-        height: 480
+        anchors.fill: parent
+
+        Rectangle {
+            anchors.fill: parent
+            color: "#656565"
+
+            Item {
+                anchors.fill: parent
+                anchors.topMargin: 30
+                anchors.bottomMargin: 5
+                anchors.leftMargin: 5
+                anchors.rightMargin: 5
+                ButtonInterface {
+
+                }
+            }
+        }
     }
 
 //    InputPanel {
