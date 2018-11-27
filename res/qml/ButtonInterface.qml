@@ -12,7 +12,6 @@ Item {
         anchors.left: parent.left
         anchors.right: middleTopButton.left
         anchors.rightMargin: parent.margins
-        onClicked: undefined // DO STUFFS
     }
 
     SmartButton {
