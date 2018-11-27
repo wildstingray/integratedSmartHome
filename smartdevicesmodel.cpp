@@ -5,6 +5,11 @@ SmartDevicesModel::SmartDevicesModel(QObject *parent) : QAbstractListModel(paren
 
 }
 
+void SmartDevicesModel::add()
+{
+    insertRows(devices.length(), 1, QModelIndex());
+}
+
 int SmartDevicesModel::rowCount()
 {
     return devices.count();

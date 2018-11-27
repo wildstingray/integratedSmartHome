@@ -23,6 +23,8 @@ public:
 public:
     explicit SmartDevicesModel(QObject *parent = nullptr);
 
+    void add();
+
     int rowCount();
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
     bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole) override;
