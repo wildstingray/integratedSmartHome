@@ -1,6 +1,6 @@
 import QtQuick 2.11
 import QtQuick.Window 2.11
-import QtQuick.Controls.Material 2.2
+import QtQuick.Controls.Universal 2.3
 //import QtQuick.VirtualKeyboard 2.3
 
 Window {
@@ -10,8 +10,6 @@ Window {
     height: 480
     title: qsTr("Integrated Smart Home")
     color: "black"
-    Material.theme: Material.Dark
-    Material.accent: Material.Purple
 
     Item {
         id: mainItem
@@ -19,7 +17,7 @@ Window {
 
         Rectangle {
             anchors.fill: parent
-            color: "#656565"
+            color: "#232323"
 
             Item {
                 anchors.fill: parent

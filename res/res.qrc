@@ -7,5 +7,7 @@
         <file>qml/Style.qml</file>
         <file>qml/qmldir</file>
         <file>img/plus.svg</file>
+        <file>qtquickcontrols2.conf</file>
+        <file>img/wifi.svg</file>
     </qresource>
 </RCC>

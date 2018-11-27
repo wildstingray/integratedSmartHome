@@ -12,14 +12,6 @@ Button {
     property double widthScaler: 5
     property double heightScaler: 5
     checkable: true
-    Rectangle {
-        visible: parent.checked
-        anchors.bottom: parent.bottom
-        anchors.left: parent.left
-        anchors.right: parent.right
-        height: 4
-        color: Style.accent
-    }
 
     Image {
         id: icon
@@ -28,6 +20,9 @@ Button {
         height: parent.height/button.heightScaler
         source: "qrc:/img/plus.svg"
 
+        //Might be useful in the future to use QQmlAbstractUrlInterceptor with prerendered versions of an icon
+        //for the different theme colors. (example: "+dark")
+        //Would allow for different icons besides just a color change to be used
         ColorOverlay {
             visible: parent.parent.hasImage
             anchors.fill: parent
@@ -35,16 +30,4 @@ Button {
             color: parent.parent.checked ? "white" : "Black"
         }
     }
-//    background: Rectangle {
-//        id: backgroundRec
-//        color: parent.isOn ? (parent.highlighted ?  Style.lightGray : Style.darkGray) : (parent.highlighted ?  Style.lightGray : Style.gray)
-//        radius: width/8
-//    }
-
-//    MouseArea {
-//        id: buttonArea
-//        hoverEnabled: true
-//        anchors.fill: parent
-//        onClicked: parent.isOn = !parent.isOn
-//    }
 }
