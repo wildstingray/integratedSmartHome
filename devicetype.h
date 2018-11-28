@@ -6,15 +6,17 @@
 class DeviceType
 {
 public:
-    DeviceType(QString imageSource = "", double imageWidthScalar = 2.0, double imageHeightScaler = 2.0);
+    DeviceType(QString deviceTypeName = "Add", QString imageSource = "qrc:/img/plus.svg", double imageWidthScalar = 2.0, double imageHeightScaler = 2.0);
 
     QString getImageSource();
     double getImageWidthScaler();
     double getImageHeightScaler();
+    QString deviceTypeName();
 
     bool operator!=(const DeviceType &a);
 
 private:
+    QString m_deviceTypeName;
     QString m_imageSource;
     double m_imageWidthScaler;
     double m_imageHeightScaler;

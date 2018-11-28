@@ -2,7 +2,8 @@
 
 SmartDevice::SmartDevice(QObject *parent) : QObject(parent)
 {
-
+    m_deviceType = DeviceType();
+    m_name = "";
 }
 
 QString SmartDevice::deviceName()

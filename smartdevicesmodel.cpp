@@ -10,8 +10,9 @@ void SmartDevicesModel::add()
     insertRows(devices.length(), 1, QModelIndex());
 }
 
-int SmartDevicesModel::rowCount()
+int SmartDevicesModel::rowCount(const QModelIndex &parent) const
 {
+    Q_UNUSED(parent)
     return devices.count();
 }
 
@@ -24,7 +25,17 @@ QVariant SmartDevicesModel::data(const QModelIndex &index, int role) const
     QVariant returnVar = QVariant();
     switch (role)
     {
-        case Qt::DisplayRole:
+        case DeviceName:
+            returnVar = devices.at(index.row())->deviceName();
+            break;
+        case ImageSource:
+            returnVar = devices.at(index.row())->deviceType().getImageSource();
+            break;
+        case ImageWidthScaler:
+            returnVar = devices.at(index.row())->deviceType().getImageWidthScaler();
+            break;
+        case ImageHeightScaler:
+            returnVar = devices.at(index.row())->deviceType().getImageHeightScaler();
             break;
         default:
             break;

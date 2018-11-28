@@ -1,7 +1,8 @@
 #include "devicetype.h"
 
-DeviceType::DeviceType(QString imageSource, double imageWidthScalar, double imageHeightScaler)
+DeviceType::DeviceType(QString deviceTypeName, QString imageSource, double imageWidthScalar, double imageHeightScaler)
 {
+    m_deviceTypeName = deviceTypeName;
     m_imageSource = imageSource;
     m_imageWidthScaler = imageWidthScalar;
     m_imageHeightScaler = imageHeightScaler;
@@ -20,6 +21,11 @@ double DeviceType::getImageWidthScaler()
 double DeviceType::getImageHeightScaler()
 {
     return m_imageHeightScaler;
+}
+
+QString DeviceType::deviceTypeName()
+{
+    return m_deviceTypeName;
 }
 
 bool DeviceType::operator!=(const DeviceType &a)

@@ -9,5 +9,6 @@
         <file>img/plus.svg</file>
         <file>qtquickcontrols2.conf</file>
         <file>img/wifi.svg</file>
+        <file>qml/TypeSelectionMenu.qml</file>
     </qresource>
 </RCC>

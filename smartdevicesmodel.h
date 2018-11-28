@@ -23,9 +23,7 @@ public:
 public:
     explicit SmartDevicesModel(QObject *parent = nullptr);
 
-    void add();
-
-    int rowCount();
+    int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
     bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole) override;
 
@@ -37,11 +35,11 @@ public:
 signals:
 
 public slots:
+    void add(); // Same as Q_INVOKABLE
 
 private:
     QList<QSharedPointer<SmartDevice>> devices;
 
-    using QAbstractListModel::rowCount;
     QHash<int, QByteArray> roleNames() const override;
 };
 
