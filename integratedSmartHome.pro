@@ -16,7 +16,8 @@ SOURCES += \
         main.cpp \
     smartdevice.cpp \
     smartdevicesmodel.cpp \
-    devicetype.cpp
+    devicetype.cpp \
+    globalproperties.cpp
 
 RESOURCES += \
         res/res.qrc
@@ -35,4 +36,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     smartdevice.h \
     smartdevicesmodel.h \
-    devicetype.h
+    devicetype.h \
+    globalproperties.h

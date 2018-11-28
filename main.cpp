@@ -1,6 +1,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
+#include <QVariantList>
 #include "smartdevicesmodel.h"
 
 int main(int argc, char *argv[])
@@ -11,7 +12,7 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     //C++
-    SmartDevicesModel model;
+    SmartDevicesModel smartDevicesmodel;
 
     QList<DeviceType> deviceTypes;
     deviceTypes.append(DeviceType("SmartBulb", "qrc:/img/lightbulbicon.svg", 1.4, 1.2));
@@ -20,7 +21,8 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
 
     QQmlContext *ctxt = engine.rootContext();
-        ctxt->setContextProperty("smartDevicesModel", &model);
+        ctxt->setContextProperty("smartDevicesModel", &smartDevicesmodel);
+//        ctxt->setContextProperty("deviceTypesList", &deviceTypes);
 
     engine.load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
     if (engine.rootObjects().isEmpty())
