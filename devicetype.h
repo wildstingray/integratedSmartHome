@@ -1,17 +1,23 @@
 #ifndef DEVICETYPE_H
 #define DEVICETYPE_H
 
+#include <QObject>
 #include <QString>
 
 class DeviceType
 {
 public:
-    DeviceType(QString deviceTypeName = "Add", QString imageSource = "qrc:/img/plus.svg", double imageWidthScalar = 2.0, double imageHeightScaler = 2.0);
+    DeviceType(QString deviceTypeName = "Add", QString imageSource = "qrc:/img/plus.svg", double imageWidthScalar = 4.0, double imageHeightScaler = 4.0);
 
     QString getImageSource();
     double getImageWidthScaler();
     double getImageHeightScaler();
-    QString deviceTypeName();
+    QString getDeviceTypeName();
+
+    void setImageSource(QString newSource);
+    void setImageWidthScaler(double newScaler);
+    void setImageHeightScaler(double newScaler);
+    void setDeviceTypeName(QString newName);
 
     bool operator!=(const DeviceType &a);
 

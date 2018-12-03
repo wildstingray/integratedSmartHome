@@ -16,7 +16,8 @@ public:
         DeviceName=Qt::UserRole,
         ImageSource,
         ImageWidthScaler,
-        ImageHeightScaler
+        ImageHeightScaler,
+        isRegistered
     };
     Q_ENUM(roles)
 

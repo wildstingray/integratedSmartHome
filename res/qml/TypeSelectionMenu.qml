@@ -3,27 +3,87 @@ import QtQuick.Controls 2.2
 import QtQuick.Controls.Material 2.2
 
 Popup {
+    id: popupWindow
+    x: 10
+    y: 10
+    width: parent.width - 20
+    height: parent.height - 20
     Component {
-        id: modelDelegate //Add three buttons at a time, have one button at bottom to add 3 more
+        id: popupDelegate
         Item {
-            width: mainItem.width/3
-            height: mainItem.height/2
+            width: popupWindow.width/3 - 10
+            height: popupWindow.height/2
             SmartButton {
+                id: button
                 anchors.fill: parent
                 anchors.margins: 3
-                image: "qrc:/img/lightbulbicon.svg"
-                hasImage: true
-                widthScaler: Style.lightBulbWidthScaler
-                heightScaler: Style.lightBulbHeightScaler
+                image: imageSource
+                widthScaler: imageWidthScaler
+                heightScaler: imageHeightScaler
+                onClicked: {
+                    smartDevicesModel.setData(0,deviceName,smartDevicesModel.DeviceName)
+                    smartDevicesModel.setData(0,button.image,smartDevicesModel.ImageSource)
+                    smartDevicesModel.setData(0,button.widthScaler,smartDevicesModel.ImageWidthScaler)
+                    smartDevicesModel.setData(0,button.heightScaler,smartDevicesModel.ImageHeightScaler)
+                    popupWindow.close()
+                }
             }
         }
     }
 
-    ListView {
-        id: buttonListView
+    ListModel {
+        id: listModel
+        ListElement {
+            deviceName: "SmartBulb"
+            imageSource: "qrc:/img/lightbulbicon.svg"
+            imageWidthScaler: 1.4
+            imageHeightScaler: 1.2
+        }
+        ListElement {
+            imageSource: "qrc:/img/lightbulbicon.svg"
+            imageWidthScaler: 1.4
+            imageHeightScaler: 1.2
+        }
+        ListElement {
+            imageSource: "qrc:/img/lightbulbicon.svg"
+            imageWidthScaler: 1.4
+            imageHeightScaler: 1.2
+        }
+        ListElement {
+            imageSource: "qrc:/img/lightbulbicon.svg"
+            imageWidthScaler: 1.4
+            imageHeightScaler: 1.2
+        }
+        ListElement {
+            imageSource: "qrc:/img/lightbulbicon.svg"
+            imageWidthScaler: 1.4
+            imageHeightScaler: 1.2
+        }
+        ListElement {
+            imageSource: "qrc:/img/lightbulbicon.svg"
+            imageWidthScaler: 1.4
+            imageHeightScaler: 1.2
+        }
+        ListElement {
+            imageSource: "qrc:/img/lightbulbicon.svg"
+            imageWidthScaler: 1.4
+            imageHeightScaler: 1.2
+        }
+        ListElement {
+            imageSource: "qrc:/img/lightbulbicon.svg"
+            imageWidthScaler: 1.4
+            imageHeightScaler: 1.2
+        }
+    }
+
+    GridView {
+        id: buttonView
         anchors.fill: parent
-        model: smartDevicesModel
-        delegate: modelDelegate
+        model: listModel
+        delegate: popupDelegate
         focus: true
+        cellWidth: popupWindow.width/3 - 10
+        cellHeight: popupWindow.height/2
+        clip: true
     }
 }

@@ -23,9 +23,29 @@ double DeviceType::getImageHeightScaler()
     return m_imageHeightScaler;
 }
 
-QString DeviceType::deviceTypeName()
+QString DeviceType::getDeviceTypeName()
 {
     return m_deviceTypeName;
+}
+
+void DeviceType::setImageSource(QString newSource)
+{
+    m_deviceTypeName = newSource;
+}
+
+void DeviceType::setImageWidthScaler(double newScaler)
+{
+    m_imageWidthScaler = newScaler;
+}
+
+void DeviceType::setImageHeightScaler(double newScaler)
+{
+    m_imageHeightScaler = newScaler;
+}
+
+void DeviceType::setDeviceTypeName(QString newName)
+{
+    m_deviceTypeName = newName;
 }
 
 bool DeviceType::operator!=(const DeviceType &a)

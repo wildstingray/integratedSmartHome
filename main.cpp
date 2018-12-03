@@ -3,6 +3,7 @@
 #include <QQmlContext>
 #include <QVariantList>
 #include "smartdevicesmodel.h"
+#include "globalproperties.h"
 
 int main(int argc, char *argv[])
 {
@@ -12,17 +13,21 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     //C++
-    SmartDevicesModel smartDevicesmodel;
-
-    QList<DeviceType> deviceTypes;
-    deviceTypes.append(DeviceType("SmartBulb", "qrc:/img/lightbulbicon.svg", 1.4, 1.2));
+    SmartDevicesModel smartDevicesModel(&app);
+    smartDevicesModel.add();
+    smartDevicesModel.add();
+    smartDevicesModel.add();
+    smartDevicesModel.add();
+    smartDevicesModel.add();
+    GlobalProperties globalProperties(&app);
 
     //QML
-    QQmlApplicationEngine engine;
+    QQmlApplicationEngine engine(&app);
 
-    QQmlContext *ctxt = engine.rootContext();
-        ctxt->setContextProperty("smartDevicesModel", &smartDevicesmodel);
-//        ctxt->setContextProperty("deviceTypesList", &deviceTypes);
+    QQmlContext *context = engine.rootContext();
+        context->setContextProperty("smartDevicesModel", &smartDevicesModel);
+        context->setContextProperty("globalProperties", &globalProperties);
+
 
     engine.load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
     if (engine.rootObjects().isEmpty())

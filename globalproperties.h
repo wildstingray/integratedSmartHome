@@ -2,18 +2,29 @@
 #define GLOBALPROPERTIES_H
 
 #include <QObject>
-
-//Make this a singleton that QML can access
+#include "devicetype.h"
+#include <QVariantList>
 
 class GlobalProperties : public QObject
 {
     Q_OBJECT
+
 public:
-    explicit GlobalProperties(QObject *parent = nullptr);
+    Q_PROPERTY(QList<DeviceType> deviceTypes READ deviceTypes NOTIFY deviceTypesChanged)
+
+public:
+    GlobalProperties(QObject * parent = Q_NULLPTR);
+
+    static GlobalProperties * instance();
+
+    QList<DeviceType> deviceTypes();
 
 signals:
+    void deviceTypesChanged(QList<DeviceType> newTypes);
 
-public slots:
+private:
+    static GlobalProperties * _instance;
+    QList<DeviceType> m_deviceTypes;
 };
 
 #endif // GLOBALPROPERTIES_H
