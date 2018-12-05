@@ -2,7 +2,7 @@
 #define SMARTDEVICE_H
 
 #include <QObject>
-#include "devicetype.h"
+#include "libs/common/devicetype.h"
 
 class SmartDevice : public QObject
 {
@@ -11,13 +11,13 @@ public:
     explicit SmartDevice(QObject *parent = nullptr);
 
     Q_PROPERTY(QString deviceName READ deviceName WRITE setDeviceName NOTIFY deviceNameChanged)
-    Q_PROPERTY(DeviceType deviceType READ deviceType WRITE setDeviceType NOTIFY deviceTypeChanged)
+//    Q_PROPERTY(DeviceType deviceType READ deviceType WRITE setDeviceType NOTIFY deviceTypeChanged)
 
     QString deviceName();
     void setDeviceName(QString newName);
 
-    DeviceType deviceType();
-    void setDeviceType(DeviceType newType);
+    DeviceType *deviceType();
+    void setDeviceType(DeviceType &newType);
 
 
 signals:
@@ -28,7 +28,7 @@ public slots:
 
 private:
     QString m_name;
-    DeviceType m_deviceType;
+//    DeviceType m_deviceType;
 };
 
 #endif // SMARTDEVICE_H

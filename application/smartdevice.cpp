@@ -2,7 +2,7 @@
 
 SmartDevice::SmartDevice(QObject *parent) : QObject(parent)
 {
-    m_deviceType = DeviceType();
+//    m_deviceType = DeviceType();
     m_name = "";
 }
 
@@ -20,16 +20,16 @@ void SmartDevice::setDeviceName(QString newName)
     }
 }
 
-DeviceType SmartDevice::deviceType()
+DeviceType * SmartDevice::deviceType()
 {
-    return m_deviceType;
+//    return &m_deviceType;
 }
 
-void SmartDevice::setDeviceType(DeviceType newType)
+void SmartDevice::setDeviceType(DeviceType &newType)
 {
-    if (m_deviceType != newType)
-    {
-        m_deviceType = newType;
-        emit deviceTypeChanged(m_deviceType);
-    }
+//    if (m_deviceType != newType)
+//    {
+//        m_deviceType = newType;
+//        emit deviceTypeChanged(m_deviceType);
+//    }
 }

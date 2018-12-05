@@ -1,8 +1,10 @@
 import QtQuick 2.11
 import QtQuick.Controls 2.2
 import QtQuick.Controls.Material 2.2
+import com.integratedSmartHome 1.0
 
 Popup {
+    property var givenIndex: index
     id: popupWindow
     x: 10
     y: 10
@@ -21,10 +23,10 @@ Popup {
                 widthScaler: imageWidthScaler
                 heightScaler: imageHeightScaler
                 onClicked: {
-                    smartDevicesModel.setData(0,deviceName,smartDevicesModel.DeviceName)
-                    smartDevicesModel.setData(0,button.image,smartDevicesModel.ImageSource)
-                    smartDevicesModel.setData(0,button.widthScaler,smartDevicesModel.ImageWidthScaler)
-                    smartDevicesModel.setData(0,button.heightScaler,smartDevicesModel.ImageHeightScaler)
+                    smartDevicesModel.setData(givenIndex,deviceName,SmartDevicesModel.DeviceName)
+                    smartDevicesModel.setData(givenIndex,button.image,SmartDevicesModel.ImageSource)
+                    smartDevicesModel.setData(givenIndex,button.widthScaler,SmartDevicesModel.ImageWidthScaler)
+                    smartDevicesModel.setData(givenIndex,button.heightScaler,SmartDevicesModel.ImageHeightScaler)
                     popupWindow.close()
                 }
             }
