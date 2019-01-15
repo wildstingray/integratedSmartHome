@@ -23,10 +23,12 @@ void SmartDevice::setDeviceName(QString newName)
 DeviceType * SmartDevice::deviceType()
 {
 //    return &m_deviceType;
+    return nullptr;
 }
 
 void SmartDevice::setDeviceType(DeviceType &newType)
 {
+    Q_UNUSED(newType)
 //    if (m_deviceType != newType)
 //    {
 //        m_deviceType = newType;

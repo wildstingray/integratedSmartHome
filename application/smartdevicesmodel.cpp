@@ -54,6 +54,7 @@ bool SmartDevicesModel::setData(int row, const QVariant &value, int role)
 
 bool SmartDevicesModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
+    Q_UNUSED(value)
     //TODO Fix this
     if ((index.row() < devices.count())
             && index.isValid()

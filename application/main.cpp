@@ -2,7 +2,7 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QVariantList>
-#include "libs/common/devicetype.h"
+#include "devicetype.h"
 #include "smartdevicesmodel.h"
 #include "globalproperties.h"
 
@@ -12,8 +12,6 @@ int main(int argc, char *argv[])
 //    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
     QGuiApplication app(argc, argv);
-
-
 
     //C++
     SmartDevicesModel smartDevicesModel(&app);
@@ -25,7 +23,7 @@ int main(int argc, char *argv[])
     GlobalProperties globalProperties(&app);
 
     //QML
-    QQmlApplicationEngine engine(&app);
+    QQmlApplicationEngine engine;
 
     qmlRegisterType<SmartDevicesModel>("com.integratedSmartHome", 1, 0, "SmartDevicesModel");
 

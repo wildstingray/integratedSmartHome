@@ -2,7 +2,7 @@
 #define GLOBALPROPERTIES_H
 
 #include <QObject>
-#include "libs/common/devicetype.h"
+#include "devicetype.h"
 #include <QVariantList>
 
 class GlobalProperties : public QObject

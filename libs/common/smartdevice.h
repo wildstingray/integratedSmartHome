@@ -2,7 +2,7 @@
 #define SMARTDEVICE_H
 
 #include <QObject>
-#include "libs/common/devicetype.h"
+#include "devicetype.h"
 
 class SmartDevice : public QObject
 {

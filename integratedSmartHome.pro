@@ -1,7 +1,9 @@
 TEMPLATE = subdirs
 
 SUBDIRS += \
-    application \
     libs \
+    application
 
 application.depends = libs
+
+CONFIG += ordered

@@ -1,31 +1,24 @@
-QT += quick
+QT += gui quick
 CONFIG += c++11
 
 DEFINES += QT_DEPRECATED_WARNINGS
 
-HEADERS += \
-    smartdevice.h \
-    smartdevicesmodel.h \
-    globalproperties.h
-
 SOURCES += \
-        main.cpp \
-    smartdevice.cpp \
+    main.cpp \
     smartdevicesmodel.cpp \
     globalproperties.cpp
+
+HEADERS += \
+    smartdevicesmodel.h \
+    globalproperties.h
 
 RESOURCES += \
         res/res.qrc
 
-! include( ../common.pri ) {
-    error( "Couldn't find the common.pri file!" )
-}
+INCLUDEPATH += ../libs/common
 
-# Additional import path used to resolve QML modules in Qt Creator's code model
-QML_IMPORT_PATH =
-
-# Additional import path used to resolve QML modules just for Qt Quick Designer
-QML_DESIGNER_IMPORT_PATH =
+LIBS += \
+    -L../libs/common -lcommon
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
