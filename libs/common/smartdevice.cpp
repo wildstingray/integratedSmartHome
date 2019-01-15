@@ -25,7 +25,7 @@ DeviceType SmartDevice::deviceType()
     return m_deviceType;
 }
 
-void SmartDevice::setDeviceType(DeviceType newType)
+void SmartDevice::setDeviceType(DeviceType &newType)
 {
     if (m_deviceType != newType)
     {

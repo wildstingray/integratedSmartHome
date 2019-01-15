@@ -1,4 +1,5 @@
 #include "smartdevicesmodel.h"
+#include <QModelIndex>
 
 SmartDevicesModel::SmartDevicesModel(QObject *parent) : QAbstractListModel(parent)
 {
@@ -38,7 +39,7 @@ QVariant SmartDevicesModel::data(const QModelIndex &index, int role) const
             returnVar = devices.at(index.row())->deviceType().getImageHeightScaler();
             break;
         case isRegistered:
-            returnVar = devices.at(index.row())->deviceType().getImageSource() != DeviceType().getImageSource();
+//            returnVar = devices.at(index.row())->deviceType()->getImageSource() != DeviceType().getImageSource();
             break;
         default:
             break;
@@ -46,9 +47,18 @@ QVariant SmartDevicesModel::data(const QModelIndex &index, int role) const
     return returnVar;
 }
 
+bool SmartDevicesModel::setData(int row, const QVariant &value, int role)
+{
+    return setData(index(row), value, role);
+}
+
 bool SmartDevicesModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
-    if (index.isValid() && role >= DeviceName) {
+    Q_UNUSED(value)
+    //TODO Fix this
+    if ((index.row() < devices.count())
+            && index.isValid()
+            && role >= DeviceName) {
         QSharedPointer<SmartDevice> device = devices.at(index.row());
         switch (role) {
             case DeviceName:

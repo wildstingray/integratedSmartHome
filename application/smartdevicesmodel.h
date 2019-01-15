@@ -36,6 +36,7 @@ public:
 signals:
 
 public slots:
+    bool setData(int row, const QVariant &value, int role);
     void add(); // Same as Q_INVOKABLE
 
 private:

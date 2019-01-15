@@ -11,13 +11,13 @@ public:
     explicit SmartDevice(QObject *parent = nullptr);
 
     Q_PROPERTY(QString deviceName READ deviceName WRITE setDeviceName NOTIFY deviceNameChanged)
-    Q_PROPERTY(DeviceType deviceType READ deviceType WRITE setDeviceType NOTIFY deviceTypeChanged)
+//    Q_PROPERTY(DeviceType deviceType READ deviceType WRITE setDeviceType NOTIFY deviceTypeChanged)
 
     QString deviceName();
     void setDeviceName(QString newName);
 
     DeviceType deviceType();
-    void setDeviceType(DeviceType newType);
+    void setDeviceType(DeviceType &newType);
 
 
 signals:

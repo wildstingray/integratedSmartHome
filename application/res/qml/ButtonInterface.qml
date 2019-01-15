@@ -17,7 +17,7 @@ Item {
                 anchors.fill: parent
                 anchors.margins: 3
                 image: imageSource
-                hasImage: isRegistered
+                hasImage: imageSource == "qrc:/img/plus.svg" ? false : true
                 widthScaler: imageWidthScaler
                 heightScaler: imageHeightScaler
                 onClicked: {

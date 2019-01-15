@@ -30,7 +30,7 @@ QString DeviceType::getDeviceTypeName()
 
 void DeviceType::setImageSource(QString newSource)
 {
-    m_deviceTypeName = newSource;
+    m_imageSource = newSource;
 }
 
 void DeviceType::setImageWidthScaler(double newScaler)
