@@ -20,6 +20,8 @@ INCLUDEPATH += ../libs/common
 LIBS += \
     -L../libs/common -lcommon
 
+# Need to add the library path to "LD_LIBRARY_PATH" environment variable
+
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin

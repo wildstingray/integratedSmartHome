@@ -28,25 +28,25 @@ QString DeviceType::getDeviceTypeName()
     return m_deviceTypeName;
 }
 
-//void DeviceType::setImageSource(QString newSource)
-//{
-//    m_imageSource = newSource;
-//}
+void DeviceType::setImageSource(QString newSource)
+{
+    m_imageSource = newSource;
+}
 
-//void DeviceType::setImageWidthScaler(double newScaler)
-//{
-//    m_imageWidthScaler = newScaler;
-//}
+void DeviceType::setImageWidthScaler(double newScaler)
+{
+    m_imageWidthScaler = newScaler;
+}
 
-//void DeviceType::setImageHeightScaler(double newScaler)
-//{
-//    m_imageHeightScaler = newScaler;
-//}
+void DeviceType::setImageHeightScaler(double newScaler)
+{
+    m_imageHeightScaler = newScaler;
+}
 
-//void DeviceType::setDeviceTypeName(QString newName)
-//{
-//    m_deviceTypeName = newName;
-//}
+void DeviceType::setDeviceTypeName(QString newName)
+{
+    m_deviceTypeName = newName;
+}
 
 bool DeviceType::operator!=(const DeviceType &a)
 {

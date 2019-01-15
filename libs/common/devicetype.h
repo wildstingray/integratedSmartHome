@@ -15,10 +15,10 @@ public:
     double getImageHeightScaler();
     QString getDeviceTypeName();
 
-//    void setImageSource(QString newSource);
-//    void setImageWidthScaler(double newScaler);
-//    void setImageHeightScaler(double newScaler);
-//    void setDeviceTypeName(QString newName);
+    void setImageSource(QString newSource);
+    void setImageWidthScaler(double newScaler);
+    void setImageHeightScaler(double newScaler);
+    void setDeviceTypeName(QString newName);
 
     bool operator!=(const DeviceType &a);
 

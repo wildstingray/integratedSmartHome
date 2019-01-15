@@ -16,7 +16,7 @@ public:
     QString deviceName();
     void setDeviceName(QString newName);
 
-    DeviceType *deviceType();
+    DeviceType deviceType();
     void setDeviceType(DeviceType &newType);
 
 
@@ -28,7 +28,7 @@ public slots:
 
 private:
     QString m_name;
-//    DeviceType m_deviceType;
+    DeviceType m_deviceType;
 };
 
 #endif // SMARTDEVICE_H

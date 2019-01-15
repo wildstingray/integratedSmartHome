@@ -30,13 +30,13 @@ QVariant SmartDevicesModel::data(const QModelIndex &index, int role) const
             returnVar = devices.at(index.row())->deviceName();
             break;
         case ImageSource:
-            returnVar = devices.at(index.row())->deviceType()->getImageSource();
+            returnVar = devices.at(index.row())->deviceType().getImageSource();
             break;
         case ImageWidthScaler:
-            returnVar = devices.at(index.row())->deviceType()->getImageWidthScaler();
+            returnVar = devices.at(index.row())->deviceType().getImageWidthScaler();
             break;
         case ImageHeightScaler:
-            returnVar = devices.at(index.row())->deviceType()->getImageHeightScaler();
+            returnVar = devices.at(index.row())->deviceType().getImageHeightScaler();
             break;
         case isRegistered:
 //            returnVar = devices.at(index.row())->deviceType()->getImageSource() != DeviceType().getImageSource();
@@ -62,20 +62,20 @@ bool SmartDevicesModel::setData(const QModelIndex &index, const QVariant &value,
         QSharedPointer<SmartDevice> device = devices.at(index.row());
         switch (role) {
             case DeviceName:
-//                device->deviceType()->setDeviceTypeName(value.toString());
-                emit device->deviceTypeChanged(*device->deviceType());
+                device->deviceType().setDeviceTypeName(value.toString());
+                emit device->deviceTypeChanged(device->deviceType());
                 break;
             case ImageSource:
-//                device->deviceType()->setImageSource(value.toString());
-                emit device->deviceTypeChanged(*device->deviceType());
+                device->deviceType().setImageSource(value.toString());
+                emit device->deviceTypeChanged(device->deviceType());
                 break;
             case ImageWidthScaler:
-//                device->deviceType()->setImageWidthScaler(value.toDouble());
-                emit device->deviceTypeChanged(*device->deviceType());
+                device->deviceType().setImageWidthScaler(value.toDouble());
+                emit device->deviceTypeChanged(device->deviceType());
                 break;
             case ImageHeightScaler:
-//                device->deviceType()->setImageHeightScaler(value.toDouble());
-                emit device->deviceTypeChanged(*device->deviceType());
+                device->deviceType().setImageHeightScaler(value.toDouble());
+                emit device->deviceTypeChanged(device->deviceType());
                 break;
             default:
                 break;
