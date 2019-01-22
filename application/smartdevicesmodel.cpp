@@ -11,6 +11,15 @@ void SmartDevicesModel::add()
     insertRows(devices.length(), 1, QModelIndex());
 }
 
+void SmartDevicesModel::resetAtIndex(const QModelIndex &index)
+{
+    removeRows(index.row(), 1, QModelIndex());
+    if (devices.length() == index.row())
+    {
+        this->add();
+    }
+}
+
 int SmartDevicesModel::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent)
@@ -128,7 +137,8 @@ bool SmartDevicesModel::removeRows(int position, int rows, const QModelIndex &in
     for (int row = 0; row < rows; ++row) {
         QSharedPointer<SmartDevice> temp = devices.at(position);
         devices.removeAt(position);
-        temp->deleteLater();
+        //temp->deleteLater(); TODO do I need this? SEVERE memory issue if I do
+        //QSharedPointer is supposed to handle deletion, but will it work in this context?
     }
 
     endRemoveRows();

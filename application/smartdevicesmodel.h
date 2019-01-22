@@ -35,9 +35,10 @@ public:
 
 signals:
 
-public slots:
+public slots: // Same as Q_INVOKABLE
     bool setData(int row, const QVariant &value, int role);
-    void add(); // Same as Q_INVOKABLE
+    void add();
+    void resetAtIndex(const QModelIndex &index);
 
 private:
     QList<QSharedPointer<SmartDevice>> devices;

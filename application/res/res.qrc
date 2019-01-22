@@ -10,5 +10,6 @@
         <file>qtquickcontrols2.conf</file>
         <file>img/wifi.svg</file>
         <file>qml/TypeSelectionMenu.qml</file>
+        <file>img/trash.svg</file>
     </qresource>
 </RCC>

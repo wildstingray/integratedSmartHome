@@ -16,10 +16,6 @@ int main(int argc, char *argv[])
     //C++
     SmartDevicesModel smartDevicesModel(&app);
     smartDevicesModel.add();
-    smartDevicesModel.add();
-    smartDevicesModel.add();
-    smartDevicesModel.add();
-    smartDevicesModel.add();
     GlobalProperties globalProperties(&app);
 
     //QML

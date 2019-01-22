@@ -22,11 +22,23 @@ Popup {
                 image: imageSource
                 widthScaler: imageWidthScaler
                 heightScaler: imageHeightScaler
+                property bool successful: true
                 onClicked: {
-                    smartDevicesModel.setData(givenIndex,deviceName,SmartDevicesModel.DeviceName)
-                    smartDevicesModel.setData(givenIndex,button.image,SmartDevicesModel.ImageSource)
-                    smartDevicesModel.setData(givenIndex,button.widthScaler,SmartDevicesModel.ImageWidthScaler)
-                    smartDevicesModel.setData(givenIndex,button.heightScaler,SmartDevicesModel.ImageHeightScaler)
+                    successful = true;
+                    successful &= smartDevicesModel.setData(givenIndex,deviceName,SmartDevicesModel.DeviceName)
+                    successful &= smartDevicesModel.setData(givenIndex,button.image,SmartDevicesModel.ImageSource)
+                    successful &= smartDevicesModel.setData(givenIndex,button.widthScaler,SmartDevicesModel.ImageWidthScaler)
+                    successful &= smartDevicesModel.setData(givenIndex,button.heightScaler,SmartDevicesModel.ImageHeightScaler)
+                    if (successful)
+                    {
+                        smartDevicesModel.add()
+                    }
+                    else
+                    {
+                        smartDevicesModel.resetAtIndex(givenIndex)
+                    }
+
+
                     popupWindow.close()
                 }
             }
