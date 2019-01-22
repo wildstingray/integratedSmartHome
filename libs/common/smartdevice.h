@@ -19,7 +19,6 @@ public:
     DeviceType deviceType();
     void setDeviceType(DeviceType &newType);
 
-
 signals:
     void deviceNameChanged(QString name);
     void deviceTypeChanged(DeviceType type);

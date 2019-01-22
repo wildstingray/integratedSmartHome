@@ -54,33 +54,45 @@ bool SmartDevicesModel::setData(int row, const QVariant &value, int role)
 
 bool SmartDevicesModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
-    Q_UNUSED(value)
-    //TODO Fix this
     if ((index.row() < devices.count())
             && index.isValid()
             && role >= DeviceName) {
         QSharedPointer<SmartDevice> device = devices.at(index.row());
+        static DeviceType type = device->deviceType();
+        bool ok = false;
         switch (role) {
             case DeviceName:
-                device->deviceType().setDeviceTypeName(value.toString());
+                type.setDeviceTypeName(value.toString());
+                device->setDeviceType(type);
                 emit device->deviceTypeChanged(device->deviceType());
                 break;
             case ImageSource:
-                device->deviceType().setImageSource(value.toString());
+                type.setImageSource(value.toString());
+                device->setDeviceType(type);
                 emit device->deviceTypeChanged(device->deviceType());
                 break;
             case ImageWidthScaler:
-                device->deviceType().setImageWidthScaler(value.toDouble());
-                emit device->deviceTypeChanged(device->deviceType());
+                type.setImageWidthScaler(value.toDouble(&ok));
+                if (ok)
+                {
+                    device->setDeviceType(type);
+                    emit device->deviceTypeChanged(device->deviceType());
+                }
+                else return false;
                 break;
             case ImageHeightScaler:
-                device->deviceType().setImageHeightScaler(value.toDouble());
-                emit device->deviceTypeChanged(device->deviceType());
+                type.setImageHeightScaler(value.toDouble(&ok));
+                if (ok)
+                {
+                    device->setDeviceType(type);
+                    emit device->deviceTypeChanged(device->deviceType());
+                }
+                else return false;
                 break;
             default:
                 break;
         }
-        device->deleteLater();
+        //device->deleteLater();
         emit dataChanged(index, index, {role});
         return true;
     }

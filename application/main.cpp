@@ -27,6 +27,8 @@ int main(int argc, char *argv[])
 
     qmlRegisterType<SmartDevicesModel>("com.integratedSmartHome", 1, 0, "SmartDevicesModel");
 
+    //Exposing the "DeviceType" class to qml might be helpful but it is fine for now
+
     QQmlContext *context = engine.rootContext();
         context->setContextProperty("smartDevicesModel", &smartDevicesModel);
         context->setContextProperty("globalProperties", &globalProperties);
