@@ -11,7 +11,6 @@ Button {
     property bool hasImage: false
     property double widthScaler: 5
     property double heightScaler: 5
-    checkable: hasImage
 
     Image {
         id: icon

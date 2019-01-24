@@ -11,5 +11,6 @@
         <file>img/wifi.svg</file>
         <file>qml/TypeSelectionMenu.qml</file>
         <file>img/trash.svg</file>
+        <file>img/pencil.svg</file>
     </qresource>
 </RCC>

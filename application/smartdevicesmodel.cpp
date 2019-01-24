@@ -11,10 +11,10 @@ void SmartDevicesModel::add()
     insertRows(devices.length(), 1, QModelIndex());
 }
 
-void SmartDevicesModel::resetAtIndex(const QModelIndex &index)
+void SmartDevicesModel::resetAtIndex(int row)
 {
-    removeRows(index.row(), 1, QModelIndex());
-    if (devices.length() == index.row())
+    removeRows(row, 1, QModelIndex());
+    if (devices.length() == row)
     {
         this->add();
     }

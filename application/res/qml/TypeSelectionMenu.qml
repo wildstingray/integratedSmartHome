@@ -5,6 +5,7 @@ import com.integratedSmartHome 1.0
 
 Popup {
     property var givenIndex: index
+    property bool isEditing: editing
     id: popupWindow
     x: 10
     y: 10
@@ -31,11 +32,14 @@ Popup {
                     successful &= smartDevicesModel.setData(givenIndex,button.heightScaler,SmartDevicesModel.ImageHeightScaler)
                     if (successful)
                     {
-                        smartDevicesModel.add()
+                        if (!isEditing) {
+                            smartDevicesModel.add()
+                        }
                     }
                     else
                     {
                         smartDevicesModel.resetAtIndex(givenIndex)
+                        //TODO throw warning to user on failure
                     }
 
 
@@ -54,37 +58,7 @@ Popup {
             imageHeightScaler: 1.2
         }
         ListElement {
-            imageSource: "qrc:/img/lightbulbicon.svg"
-            imageWidthScaler: 1.4
-            imageHeightScaler: 1.2
-        }
-        ListElement {
-            imageSource: "qrc:/img/lightbulbicon.svg"
-            imageWidthScaler: 1.4
-            imageHeightScaler: 1.2
-        }
-        ListElement {
-            imageSource: "qrc:/img/lightbulbicon.svg"
-            imageWidthScaler: 1.4
-            imageHeightScaler: 1.2
-        }
-        ListElement {
-            imageSource: "qrc:/img/lightbulbicon.svg"
-            imageWidthScaler: 1.4
-            imageHeightScaler: 1.2
-        }
-        ListElement {
-            imageSource: "qrc:/img/lightbulbicon.svg"
-            imageWidthScaler: 1.4
-            imageHeightScaler: 1.2
-        }
-        ListElement {
-            imageSource: "qrc:/img/lightbulbicon.svg"
-            imageWidthScaler: 1.4
-            imageHeightScaler: 1.2
-        }
-        ListElement {
-            imageSource: "qrc:/img/lightbulbicon.svg"
+            imageSource: "qrc:/img/wifi.svg"
             imageWidthScaler: 1.4
             imageHeightScaler: 1.2
         }

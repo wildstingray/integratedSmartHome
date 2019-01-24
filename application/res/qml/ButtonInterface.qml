@@ -12,19 +12,52 @@ Item {
         Item {
             width: mainItem.width/3
             height: mainItem.height/2
+            property bool editing: false
+            property variant win;
             SmartButton {
-                property variant win;
                 anchors.fill: parent
                 anchors.margins: 3
                 image: imageSource
-                hasImage: imageSource == "qrc:/img/plus.svg" ? false : true
+                hasImage: imageSource != "qrc:/img/plus.svg"
                 widthScaler: imageWidthScaler
                 heightScaler: imageHeightScaler
+                checkable: hasImage
                 onClicked: {
-                    if (isRegistered) {
+                    if (hasImage) {
 
                     }
                     else {
+                        var component = Qt.createComponent("TypeSelectionMenu.qml");
+                        win = component.createObject(mainItem);
+                        win.open();
+                    }
+                }
+
+                SmartButton {
+                    anchors.top: parent.top
+                    anchors.right: parent.right
+                    width: parent/16
+                    height: width
+                    visible: parent.hasImage
+                    image: "qrc:/img/trash.svg"
+                    widthScaler: 2
+                    heightScaler: 2
+                    onClicked: {
+                        smartDevicesModel.resetAtIndex(index)
+                    }
+                }
+
+                SmartButton {
+                    anchors.top: parent.top
+                    anchors.left: parent.left
+                    width: parent/16
+                    height: width
+                    visible: parent.hasImage
+                    image: "qrc:/img/pencil.svg"
+                    widthScaler: 2
+                    heightScaler: 2
+                    onClicked: {
+                        editing = true
                         var component = Qt.createComponent("TypeSelectionMenu.qml");
                         win = component.createObject(mainItem);
                         win.open();
