@@ -19,6 +19,8 @@ Item {
         Label {
             id: nameLabel
             anchors.top: parent.top
+            anchors.topMargin: 3
+            anchors.bottom: parent.bottom
             height: 50
             text: "Device Name:"
             font.pointSize: 20
@@ -28,7 +30,10 @@ Item {
             anchors.left: nameLabel.right
             anchors.verticalCenter: parent.verticalCenter
             anchors.leftMargin: 5
+            height: 50
             width: 140
+            font.pixelSize: 24
+            color: Style.lightGreen
         }
     }
 
@@ -53,6 +58,8 @@ Item {
             anchors.verticalCenter: parent.verticalCenter
             anchors.leftMargin: 5
             width: 140
+            font.pixelSize: 24
+            color: Style.lightGreen
         }
     }
 
