@@ -1,6 +1,7 @@
 import QtQuick 2.11
 import QtQuick.Window 2.11
 import QtQuick.Controls.Universal 2.3
+//import "."
 //import QtQuick.VirtualKeyboard 2.3
 
 Window {
@@ -17,7 +18,7 @@ Window {
 
         Rectangle {
             anchors.fill: parent
-            color: "#232323"
+            color: Style.darkDarkGray
 
             Item {
                 anchors.fill: parent
@@ -32,6 +33,7 @@ Window {
         }
     }
 
+//TODO keyboard
 //    InputPanel {
 //        id: inputPanel
 //        z: 99

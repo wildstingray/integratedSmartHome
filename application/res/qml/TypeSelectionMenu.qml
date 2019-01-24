@@ -5,7 +5,6 @@ import com.integratedSmartHome 1.0
 
 Popup {
     property var givenIndex: index
-    property bool isEditing: editing
     id: popupWindow
     x: 10
     y: 10
@@ -32,9 +31,7 @@ Popup {
                     successful &= smartDevicesModel.setData(givenIndex,button.heightScaler,SmartDevicesModel.ImageHeightScaler)
                     if (successful)
                     {
-                        if (!isEditing) {
-                            smartDevicesModel.add()
-                        }
+                        buttonView.visible = false
                     }
                     else
                     {
@@ -43,7 +40,7 @@ Popup {
                     }
 
 
-                    popupWindow.close()
+//                    popupWindow.close()
                 }
             }
         }
@@ -73,5 +70,11 @@ Popup {
         cellWidth: popupWindow.width/3 - 10
         cellHeight: popupWindow.height/2
         clip: true
+    }
+
+    SmartDeviceSettingsMenu {
+        visible: !buttonView.visible
+        targetObject: popupWindow
+        isEditing: editing
     }
 }

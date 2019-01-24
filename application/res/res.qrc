@@ -12,5 +12,6 @@
         <file>qml/TypeSelectionMenu.qml</file>
         <file>img/trash.svg</file>
         <file>img/pencil.svg</file>
+        <file>qml/SmartDeviceSettingsMenu.qml</file>
     </qresource>
 </RCC>
