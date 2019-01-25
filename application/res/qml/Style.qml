@@ -11,5 +11,5 @@ QtObject {
     readonly property double lightBulbHeightScaler: 1.2
 
     readonly property color primary: "#000000"
-    readonly property color accent: "orange"
+    readonly property color accent: "DarkOrange"
 }

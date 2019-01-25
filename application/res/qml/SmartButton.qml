@@ -11,6 +11,15 @@ Button {
     property bool hasImage: false
     property double widthScaler: 5
     property double heightScaler: 5
+    property alias labelText: textLabel.text
+    Label {
+        id: textLabel
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 10
+        font.pixelSize: 22
+        color: parent.checked ? Style.accent : "white"
+    }
 
     Image {
         id: icon

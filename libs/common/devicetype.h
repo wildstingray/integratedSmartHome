@@ -7,23 +7,23 @@
 class DeviceType
 {
 public:
-    DeviceType(QString deviceTypeName = "Add", QString imageSource = "qrc:/img/plus.svg", double imageWidthScalar = 4.0, double imageHeightScaler = 4.0);
+    DeviceType(/*QString deviceTypeName = "Add",*/ QString imageSource = "qrc:/img/plus.svg", double imageWidthScalar = 4.0, double imageHeightScaler = 4.0);
 //    static const DeviceType SmartBulb;
 
     QString getImageSource();
     double getImageWidthScaler();
     double getImageHeightScaler();
-    QString getDeviceTypeName();
+//    QString getDeviceTypeName();
 
     void setImageSource(QString newSource);
     void setImageWidthScaler(double newScaler);
     void setImageHeightScaler(double newScaler);
-    void setDeviceTypeName(QString newName);
+//    void setDeviceTypeName(QString newName);
 
     bool operator!=(const DeviceType &a);
 
 private:
-    QString m_deviceTypeName;
+//    QString m_deviceTypeName;
     QString m_imageSource;
     double m_imageWidthScaler;
     double m_imageHeightScaler;

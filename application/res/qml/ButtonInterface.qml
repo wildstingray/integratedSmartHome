@@ -22,6 +22,7 @@ Item {
                 widthScaler: imageWidthScaler
                 heightScaler: imageHeightScaler
                 checkable: hasImage
+                labelText: hasImage ? name : ""
                 onClicked: {
                     if (hasImage) {
 

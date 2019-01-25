@@ -71,8 +71,7 @@ bool SmartDevicesModel::setData(const QModelIndex &index, const QVariant &value,
         bool ok = false;
         switch (role) {
             case DeviceName:
-                type.setDeviceTypeName(value.toString());
-                device->setDeviceType(type);
+                device->setDeviceName(value.toString());
                 emit device->deviceTypeChanged(device->deviceType());
                 break;
             case ImageSource:

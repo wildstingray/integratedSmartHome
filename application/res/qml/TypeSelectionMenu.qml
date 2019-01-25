@@ -22,10 +22,10 @@ Popup {
                 image: imageSource
                 widthScaler: imageWidthScaler
                 heightScaler: imageHeightScaler
+                labelText: deviceType
                 property bool successful: true
                 onClicked: {
-                    successful = true;
-                    successful &= smartDevicesModel.setData(givenIndex,deviceName,SmartDevicesModel.DeviceName)
+                    successful = true
                     successful &= smartDevicesModel.setData(givenIndex,button.image,SmartDevicesModel.ImageSource)
                     successful &= smartDevicesModel.setData(givenIndex,button.widthScaler,SmartDevicesModel.ImageWidthScaler)
                     successful &= smartDevicesModel.setData(givenIndex,button.heightScaler,SmartDevicesModel.ImageHeightScaler)
@@ -49,12 +49,13 @@ Popup {
     ListModel {
         id: listModel
         ListElement {
-            deviceName: "SmartBulb"
+            deviceType: "SmartBulb"
             imageSource: "qrc:/img/lightbulbicon.svg"
-            imageWidthScaler: 1.4
-            imageHeightScaler: 1.2
+            imageWidthScaler: 1.6
+            imageHeightScaler: 1.35
         }
         ListElement {
+            deviceType: "Other"
             imageSource: "qrc:/img/wifi.svg"
             imageWidthScaler: 1.4
             imageHeightScaler: 1.2

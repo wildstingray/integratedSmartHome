@@ -8,8 +8,9 @@ GlobalProperties::GlobalProperties(QObject * parent)
     Q_ASSERT(!_instance);
     _instance = this;
 
+    //TODO
     m_deviceTypes.clear();
-    m_deviceTypes.append(DeviceType("LightBulb", "qrc:/img/lightbulbicon.svg", 1.4, 1.2));
+    m_deviceTypes.append(DeviceType("qrc:/img/lightbulbicon.svg", 1.4, 1.2));
 }
 
 GlobalProperties * GlobalProperties::instance()
