@@ -1,5 +1,6 @@
 QT += gui quick
 CONFIG += c++11
+CONFIG -= debug_and_release debug_and_release_target
 
 DEFINES += QT_DEPRECATED_WARNINGS
 
@@ -19,6 +20,8 @@ INCLUDEPATH += ../libs/common
 
 LIBS += \
     -L../libs/common -lcommon
+
+
 
 # Need to add the library path to "LD_LIBRARY_PATH" environment variable
 

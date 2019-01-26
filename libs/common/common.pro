@@ -1,7 +1,7 @@
 QT -= gui
 
 CONFIG += c++11
-CONFIG -= app_bundle
+CONFIG -= app_bundle debug_and_release debug_and_release_target
 
 DEFINES += QT_DEPRECATED_WARNINGS
 
