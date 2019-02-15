@@ -26,7 +26,7 @@ Button {
         anchors.centerIn: parent
         width: parent.width/button.widthScaler
         height: parent.height/button.heightScaler
-        source: "qrc:/img/plus.svg"
+        source: "qrc:/img/plus.png"
 
         //Might be useful in the future to use QQmlAbstractUrlInterceptor with prerendered versions of an icon
         //for the different theme colors. (example: "+dark")

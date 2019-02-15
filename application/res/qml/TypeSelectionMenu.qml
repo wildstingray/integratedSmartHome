@@ -50,15 +50,15 @@ Popup {
         id: listModel
         ListElement {
             deviceType: "SmartBulb"
-            imageSource: "qrc:/img/lightbulbicon.svg"
+            imageSource: "qrc:/img/lightbulbicon_Black.png"
             imageWidthScaler: 1.6
             imageHeightScaler: 1.35
         }
         ListElement {
             deviceType: "Other"
-            imageSource: "qrc:/img/wifi.svg"
-            imageWidthScaler: 1.4
-            imageHeightScaler: 1.2
+            imageSource: "qrc:/img/Wireless-icon.png"
+            imageWidthScaler: 2
+            imageHeightScaler: 2
         }
     }
 

@@ -18,7 +18,7 @@ Item {
                 anchors.fill: parent
                 anchors.margins: 3
                 image: imageSource
-                hasImage: imageSource != "qrc:/img/plus.svg"
+                hasImage: imageSource != "qrc:/img/plus.png"
                 widthScaler: imageWidthScaler
                 heightScaler: imageHeightScaler
                 checkable: hasImage
@@ -40,7 +40,7 @@ Item {
                     width: parent/16
                     height: width
                     visible: parent.hasImage
-                    image: "qrc:/img/trash.svg"
+                    image: "qrc:/img/trash.png"
                     widthScaler: 2
                     heightScaler: 2
                     onClicked: {
@@ -54,7 +54,7 @@ Item {
                     width: parent/16
                     height: width
                     visible: parent.hasImage
-                    image: "qrc:/img/pencil.svg"
+                    image: "qrc:/img/pencil.png"
                     widthScaler: 2
                     heightScaler: 2
                     onClicked: {

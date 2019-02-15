@@ -3,15 +3,16 @@
         <file>qml/ButtonInterface.qml</file>
         <file>qml/main.qml</file>
         <file>qml/SmartButton.qml</file>
-        <file>img/lightbulbicon.svg</file>
         <file>qml/Style.qml</file>
         <file>qml/qmldir</file>
-        <file>img/plus.svg</file>
         <file>qtquickcontrols2.conf</file>
-        <file>img/wifi.svg</file>
         <file>qml/TypeSelectionMenu.qml</file>
-        <file>img/trash.svg</file>
-        <file>img/pencil.svg</file>
         <file>qml/SmartDeviceSettingsMenu.qml</file>
+        <file>img/lightbulbicon_Black.png</file>
+        <file>img/lightbulbicon_white.png</file>
+        <file>img/pencil.png</file>
+        <file>img/plus.png</file>
+        <file>img/trash.png</file>
+        <file>img/Wireless-icon.png</file>
     </qresource>
 </RCC>

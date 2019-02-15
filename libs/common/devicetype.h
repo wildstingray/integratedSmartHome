@@ -7,7 +7,7 @@
 class DeviceType
 {
 public:
-    DeviceType(/*QString deviceTypeName = "Add",*/ QString imageSource = "qrc:/img/plus.svg", double imageWidthScalar = 4.0, double imageHeightScaler = 4.0);
+    DeviceType(/*QString deviceTypeName = "Add",*/ QString imageSource = "qrc:/img/plus.png", double imageWidthScalar = 4.0, double imageHeightScaler = 4.0);
 //    static const DeviceType SmartBulb;
 
     QString getImageSource();
