@@ -1,4 +1,4 @@
-QT += gui quick
+QT += gui quick mqtt
 CONFIG += c++11
 CONFIG -= debug_and_release debug_and_release_target
 
