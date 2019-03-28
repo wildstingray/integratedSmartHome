@@ -3,6 +3,7 @@ import QtQuick.Window 2.11
 import QtQuick.Controls.Universal 2.3
 //import "."
 //import QtQuick.VirtualKeyboard 2.3
+import com.integratedSmartHome 1.0
 
 Window {
     id: window
@@ -16,6 +17,12 @@ Window {
         id: mainItem
         anchors.fill: parent
 
+        MqttClient {
+            id: raspiClientObj
+            hostname: "localhost"
+            port: "1883"
+        }
+
         Rectangle {
             anchors.fill: parent
             color: Style.darkDarkGray
@@ -27,6 +34,7 @@ Window {
                 anchors.leftMargin: 5
                 anchors.rightMargin: 5
                 ButtonInterface {
+                    raspiClient: raspiClientObj
 
                 }
             }

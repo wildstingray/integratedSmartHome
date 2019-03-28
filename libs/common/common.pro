@@ -10,12 +10,14 @@ SOURCES += \
     main.cpp \
     devicetype.cpp \
     smartdevice.cpp \
-    mqttclient.cpp
+    mqttclient.cpp \
+    mqttsubscription.cpp
 
 HEADERS += \
     devicetype.h \
     smartdevice.h \
-    mqttclient.h
+    mqttclient.h \
+    mqttsubscription.h
 
 ! include( ../libs.pri ) {
     error( "Couldn't find the libs.pri file!" )
