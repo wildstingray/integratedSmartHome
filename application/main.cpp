@@ -5,7 +5,7 @@
 #include "devicetype.h"
 #include "smartdevicesmodel.h"
 #include "globalproperties.h"
-#include "mqttclient.h"
+#include "qmlmqttclient.h"
 
 int main(int argc, char *argv[])
 {
@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
 
     qmlRegisterType<SmartDevicesModel>("com.integratedSmartHome", 1, 0, "SmartDevicesModel");
-    qmlRegisterType<MqttClient>("com.integratedSmartHome", 1, 0, "MqttClient");
+    qmlRegisterType<QmlMqttClient>("com.integratedSmartHome", 1, 0, "MqttClient");
     qmlRegisterUncreatableType<QMqttSubscription>("com.integratedSmartHome", 1, 0, "QMqttSubscription", QLatin1String("Read only, no copy copy"));
 
     //Exposing the "DeviceType" class to qml might be helpful but it is fine for now
