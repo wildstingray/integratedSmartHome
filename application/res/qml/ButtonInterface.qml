@@ -5,11 +5,11 @@ import "."
 Item {
     id: mainItem
     anchors.fill: parent
-    property int margins: 8
+    property int margins: 0
     property var raspiClient
 
     Component {
-        id: modelDelegate //Add three buttons at a time, have one button at bottom to add 3 more
+        id: modelDelegate
         Item {
             width: mainItem.width/3
             height: mainItem.height/2

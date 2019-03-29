@@ -49,7 +49,7 @@ Item {
             id: ssidLabel
             anchors.top: parent.top
             height: 50
-            text: "SSID:"
+            text: "Topic:"
             font.pointSize: 20
         }
         TextField {
