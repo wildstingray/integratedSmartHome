@@ -1,6 +1,7 @@
 import QtQuick 2.11
 import QtQuick.Controls 2.2
 import "."
+import com.integratedSmartHome 1.0
 
 Item {
     id: mainItem
@@ -25,6 +26,12 @@ Item {
                 checkable: hasImage
                 labelText: hasImage ? name : ""
                 onClicked: {
+                    if (raspiClient.state === MqttClient.Disconnected)
+                    {
+                        raspiClient.connectToHost()
+                        console.log("Client Connecting...")
+                    }
+
                     if (hasImage) {
 
                     }
