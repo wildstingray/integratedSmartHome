@@ -17,7 +17,8 @@ public:
         ImageSource,
         ImageWidthScaler,
         ImageHeightScaler,
-        isRegistered
+        isRegistered,
+        TopicString
     };
     Q_ENUM(roles)
 

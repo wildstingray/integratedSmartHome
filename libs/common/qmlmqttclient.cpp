@@ -9,6 +9,7 @@ QmlMqttClient::QmlMqttClient(QObject *parent)
 
 QmlMqttSubscription* QmlMqttClient::subscribe(const QString &topic)
 {
+    //TODO fix this, crashes
     auto sub = QMqttClient::subscribe(topic, 0);
     auto result = new QmlMqttSubscription(sub, this);
     return result;

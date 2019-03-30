@@ -47,6 +47,9 @@ QVariant SmartDevicesModel::data(const QModelIndex &index, int role) const
         case ImageHeightScaler:
             returnVar = devices.at(index.row())->deviceType().getImageHeightScaler();
             break;
+        case TopicString:
+            returnVar = devices.at(index.row())->topicString();
+            break;
         case isRegistered:
 //            returnVar = devices.at(index.row())->deviceType()->getImageSource() != DeviceType().getImageSource();
             break;
@@ -152,5 +155,6 @@ QHash<int, QByteArray> SmartDevicesModel::roleNames() const
     roles[ImageWidthScaler] = "imageWidthScaler";
     roles[ImageHeightScaler] = "imageHeightScaler";
     roles[isRegistered] = "isRegistered";
+    roles[TopicString] = "topicName";
     return roles;
 }

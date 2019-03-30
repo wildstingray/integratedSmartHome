@@ -34,11 +34,16 @@ void SmartDevice::setDeviceType(DeviceType &newType)
     }
 }
 
-void SmartDevice::setTopic(QString newTopic)
+QString SmartDevice::topicString()
+{
+    return m_topic.name();
+}
+
+void SmartDevice::setTopicString(QString newTopic)
 {
     if (m_topic.name() != newTopic)
     {
         m_topic.setName(newTopic);
-        emit topicChanged();
+        emit topicStringChanged(newTopic);
     }
 }

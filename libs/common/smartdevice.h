@@ -13,7 +13,7 @@ public:
 
     Q_PROPERTY(QString deviceName READ deviceName WRITE setDeviceName NOTIFY deviceNameChanged)
 //    Q_PROPERTY(DeviceType deviceType READ deviceType WRITE setDeviceType NOTIFY deviceTypeChanged)
-    Q_PROPERTY(QMqttTopicName topic READ topic WRITE settopic NOTIFY topicChanged)
+    Q_PROPERTY(QString topicString READ topicString WRITE setTopicString NOTIFY topicStringChanged)
 
     QString deviceName();
     void setDeviceName(QString newName);
@@ -21,13 +21,13 @@ public:
     DeviceType deviceType();
     void setDeviceType(DeviceType &newType);
 
-    QMqttTopicName topic();
-    void setTopic(QString newTopic); //{m_topic = QMqttTopicName(newTopic);}
+    QString topicString();
+    void setTopicString(QString newTopic); //{m_topic = QMqttTopicName(newTopic);}
 
 signals:
     void deviceNameChanged(QString name);
     void deviceTypeChanged(DeviceType type);
-    void topicChanged(QString topic);
+    void topicStringChanged(QString topic);
 
 public slots:
 

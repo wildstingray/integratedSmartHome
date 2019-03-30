@@ -30,9 +30,14 @@ Item {
                     {
                         raspiClient.connectToHost()
                         console.log("Client Connecting...")
+//                        raspiClient.subscribe("Raspi")
+//                        console.log("Subscribed to \"Raspi\"")
                     }
 
                     if (hasImage) {
+                        var value = checked ? 0x01 : 0x00
+                        raspiClient.publish(topicName, value)
+                        console.log("Sent Topic: " + topicName + " with payload: " + value)
 
                     }
                     else {

@@ -72,6 +72,7 @@ Item {
         text: "Accept"
         onClicked: {
             smartDevicesModel.setData(givenIndex,nameTextField.text,SmartDevicesModel.DeviceName)
+            smartDevicesModel.setData(givenIndex,"Test",SmartDevicesModel.TopicString)
             if (!isEditing)
             {
                 smartDevicesModel.add()

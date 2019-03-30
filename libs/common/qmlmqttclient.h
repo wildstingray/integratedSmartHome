@@ -4,6 +4,7 @@
 #include <QtCore/QMap>
 #include <QtMqtt/QMqttClient>
 #include <QtMqtt/QMqttSubscription>
+#include <QtMqtt/QMqttTopicName>
 
 class QmlMqttClient;
 
@@ -13,6 +14,14 @@ class QmlMqttSubscription : public QObject
     Q_PROPERTY(QMqttTopicFilter topic MEMBER m_topic NOTIFY topicChanged)
 
 public:
+// TODO On possible implementation for moving data processing out of qml
+//    enum DataTypes{
+//        Boolean=0, //Lightbulb or relay
+//        Array //Could be used for rgb
+//    };
+//    Q_ENUM(DataTypes)
+
+
     QmlMqttSubscription(QMqttSubscription *s, QmlMqttClient *c);
     ~QmlMqttSubscription();
 
