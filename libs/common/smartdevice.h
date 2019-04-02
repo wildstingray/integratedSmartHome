@@ -34,7 +34,7 @@ public slots:
 private:
     QString m_name;
     DeviceType m_deviceType;
-    QMqttTopicName m_topic;
+    QMqttTopicName m_topicString;
 };
 
 #endif // SMARTDEVICE_H

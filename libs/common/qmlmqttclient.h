@@ -57,6 +57,9 @@ signals:
 private:
     Q_DISABLE_COPY(QmlMqttClient)
 
+    void pingSuccessful();
+    void stateChange();
+
     void handlePortChanged(quint16 newPort);
 };
 

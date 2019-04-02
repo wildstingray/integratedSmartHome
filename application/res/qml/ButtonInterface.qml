@@ -30,8 +30,6 @@ Item {
                     {
                         raspiClient.connectToHost()
                         console.log("Client Connecting...")
-//                        raspiClient.subscribe("Raspi")
-//                        console.log("Subscribed to \"Raspi\"")
                     }
 
                     if (hasImage) {
