@@ -51,6 +51,10 @@ public:
     int portNum();
     void setPortNum(int newPort);
 
+public slots:
+//    qint32 publish(const QString &topicName, const QString &message = "", quint8 qos = 0, bool retain = false);
+    qint32 publish(const QString &topicName, const int &message = 0, quint8 qos = 0, bool retain = false);
+
 signals:
     void portNumChanged(int newPort);
 

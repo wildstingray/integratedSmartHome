@@ -49,10 +49,20 @@ void QmlMqttClient::setPortNum(int newPort)
     }
 }
 
+//qint32 QmlMqttClient::publish(const QString &topicName, const QString &message, quint8 qos, bool retain)
+//{
+//    return this->QMqttClient::publish(QMqttTopicName(topicName), message.toUtf8(), qos, retain);
+//}
+
+qint32 QmlMqttClient::publish(const QString &topicName, const int &message, quint8 qos, bool retain)
+{
+    return this->QMqttClient::publish(QMqttTopicName(topicName), QByteArray().setNum(message), qos, retain);
+}
+
 void QmlMqttClient::pingSuccessful()
 {
     qDebug() << "Connected";
-    subscribe("Raspi");
+    subscribe("/raspi");
 }
 
 void QmlMqttClient::stateChange()

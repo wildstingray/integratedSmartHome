@@ -56,7 +56,7 @@ Popup {
             imageSource: "qrc:/img/lightbulbicon_Black.png"
             imageWidthScaler: 1.6
             imageHeightScaler: 1.35
-            defaultTopic: "home/lights"
+            defaultTopic: "/home/lights"
 //            property int typeCount: 1
         }
         ListElement {
@@ -64,7 +64,7 @@ Popup {
             imageSource: "qrc:/img/Wireless-icon.png"
             imageWidthScaler: 2
             imageHeightScaler: 2
-            defaultTopic: "home/relay"
+            defaultTopic: "/home/relay"
 //            property int typeCount: 1
         }
     }
