@@ -18,7 +18,9 @@ public:
         ImageWidthScaler,
         ImageHeightScaler,
         isRegistered,
-        TopicString
+        TopicString,
+        QmlUrl,
+        DeviceTypeName,
     };
     Q_ENUM(roles)
 

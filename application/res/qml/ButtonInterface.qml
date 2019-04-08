@@ -18,7 +18,8 @@ Item {
             property variant win;
             Loader {
                 id: dynamicLoader
-                //source: ""
+                anchors.fill: parent
+                source: qmlUrl
             }
         }
     }
@@ -26,11 +27,11 @@ Item {
     ListModel {
         id: loaderTypes
         ListElement {
-            name: button
+            deviceTypeName: "button"
             qmlUrl: "qrc:/qml/ComplexSmartButton.qml"
         }
         ListElement {
-            name: sensor
+            deviceTypeName: "sensor"
             qmlUrl: "qrc:/qml/SmartSensor.qml"
         }
     }
