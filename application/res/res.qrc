@@ -14,5 +14,7 @@
         <file>img/plus.png</file>
         <file>img/trash.png</file>
         <file>img/Wireless-icon.png</file>
+        <file>qml/ComplexSmartButton.qml</file>
+        <file>qml/SmartSensor.qml</file>
     </qresource>
 </RCC>
