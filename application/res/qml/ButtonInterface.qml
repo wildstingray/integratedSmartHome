@@ -1,14 +1,16 @@
 import QtQuick 2.11
 import QtQuick.Controls 2.2
 import "."
+import com.integratedSmartHome 1.0
 
 Item {
     id: mainItem
     anchors.fill: parent
-    property int margins: 8
+    property int margins: 0
+    property var raspiClient
 
     Component {
-        id: modelDelegate //Add three buttons at a time, have one button at bottom to add 3 more
+        id: modelDelegate
         Item {
             width: mainItem.width/3
             height: mainItem.height/2
@@ -24,7 +26,16 @@ Item {
                 checkable: hasImage
                 labelText: hasImage ? name : ""
                 onClicked: {
+                    if (raspiClient.state === MqttClient.Disconnected)
+                    {
+                        raspiClient.connectToHost()
+                        console.log("Client Connecting...")
+                    }
+
                     if (hasImage) {
+                        var value = checked ? 0x01 : 0x00
+                        raspiClient.publish(topicName, value)
+                        console.log("Sent Topic: " + topicName + " with payload: " + value)
 
                     }
                     else {

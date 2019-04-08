@@ -4,6 +4,7 @@ SmartDevice::SmartDevice(QObject *parent) : QObject(parent)
 {
     m_deviceType = DeviceType();
     m_name = "";
+    m_topicString = QMqttTopicName("Test2");
 }
 
 QString SmartDevice::deviceName()
@@ -31,5 +32,19 @@ void SmartDevice::setDeviceType(DeviceType &newType)
     {
         m_deviceType = newType;
         emit deviceTypeChanged(m_deviceType);
+    }
+}
+
+QString SmartDevice::topicString()
+{
+    return m_topicString.name();
+}
+
+void SmartDevice::setTopicString(QString newTopic)
+{
+    if (m_topicString.name() != newTopic)
+    {
+        m_topicString.setName(newTopic);
+        emit topicStringChanged(newTopic);
     }
 }

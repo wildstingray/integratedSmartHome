@@ -3,7 +3,7 @@
 
 SmartDevicesModel::SmartDevicesModel(QObject *parent) : QAbstractListModel(parent)
 {
-
+    m_objectCounter = 1;
 }
 
 void SmartDevicesModel::add()
@@ -26,6 +26,11 @@ int SmartDevicesModel::rowCount(const QModelIndex &parent) const
     return devices.count();
 }
 
+QVariant SmartDevicesModel::data(int row, int role) const
+{
+    return data(index(row), role);
+}
+
 QVariant SmartDevicesModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid()
@@ -46,6 +51,9 @@ QVariant SmartDevicesModel::data(const QModelIndex &index, int role) const
             break;
         case ImageHeightScaler:
             returnVar = devices.at(index.row())->deviceType().getImageHeightScaler();
+            break;
+        case TopicString:
+            returnVar = devices.at(index.row())->topicString();
             break;
         case isRegistered:
 //            returnVar = devices.at(index.row())->deviceType()->getImageSource() != DeviceType().getImageSource();
@@ -72,19 +80,19 @@ bool SmartDevicesModel::setData(const QModelIndex &index, const QVariant &value,
         switch (role) {
             case DeviceName:
                 device->setDeviceName(value.toString());
-                emit device->deviceTypeChanged(device->deviceType());
+//                emit device->deviceTypeChanged(device->deviceType());
                 break;
             case ImageSource:
                 type.setImageSource(value.toString());
                 device->setDeviceType(type);
-                emit device->deviceTypeChanged(device->deviceType());
+//                emit device->deviceTypeChanged(device->deviceType());
                 break;
             case ImageWidthScaler:
                 type.setImageWidthScaler(value.toDouble(&ok));
                 if (ok)
                 {
                     device->setDeviceType(type);
-                    emit device->deviceTypeChanged(device->deviceType());
+//                    emit device->deviceTypeChanged(device->deviceType());
                 }
                 else return false;
                 break;
@@ -93,9 +101,12 @@ bool SmartDevicesModel::setData(const QModelIndex &index, const QVariant &value,
                 if (ok)
                 {
                     device->setDeviceType(type);
-                    emit device->deviceTypeChanged(device->deviceType());
+//                    emit device->deviceTypeChanged(device->deviceType());
                 }
                 else return false;
+                break;
+            case TopicString:
+                device->setTopicString(value.toString());
                 break;
             default:
                 break;
@@ -144,6 +155,16 @@ bool SmartDevicesModel::removeRows(int position, int rows, const QModelIndex &in
     return true;
 }
 
+int SmartDevicesModel::objectCounter()
+{
+    return m_objectCounter;
+}
+
+void SmartDevicesModel::incObjectCounter()
+{
+    m_objectCounter++;
+}
+
 QHash<int, QByteArray> SmartDevicesModel::roleNames() const
 {
     QHash<int, QByteArray> roles;
@@ -152,5 +173,6 @@ QHash<int, QByteArray> SmartDevicesModel::roleNames() const
     roles[ImageWidthScaler] = "imageWidthScaler";
     roles[ImageHeightScaler] = "imageHeightScaler";
     roles[isRegistered] = "isRegistered";
+    roles[TopicString] = "topicName";
     return roles;
 }

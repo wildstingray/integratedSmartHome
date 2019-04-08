@@ -5,6 +5,8 @@ import com.integratedSmartHome 1.0
 
 Popup {
     property var givenIndex: index
+    property string selectedDefualtTopic
+//    property int typeCounter: 1
     id: popupWindow
     x: 10
     y: 10
@@ -25,6 +27,7 @@ Popup {
                 labelText: deviceType
                 property bool successful: true
                 onClicked: {
+                    popupWindow.selectedDefualtTopic = defaultTopic
                     successful = true
                     successful &= smartDevicesModel.setData(givenIndex,button.image,SmartDevicesModel.ImageSource)
                     successful &= smartDevicesModel.setData(givenIndex,button.widthScaler,SmartDevicesModel.ImageWidthScaler)
@@ -53,12 +56,16 @@ Popup {
             imageSource: "qrc:/img/lightbulbicon_Black.png"
             imageWidthScaler: 1.6
             imageHeightScaler: 1.35
+            defaultTopic: "/home/lights"
+//            property int typeCount: 1
         }
         ListElement {
             deviceType: "Other"
             imageSource: "qrc:/img/Wireless-icon.png"
             imageWidthScaler: 2
             imageHeightScaler: 2
+            defaultTopic: "/home/relay"
+//            property int typeCount: 1
         }
     }
 
@@ -77,5 +84,7 @@ Popup {
         visible: !buttonView.visible
         targetObject: popupWindow
         isEditing: editing
+        defaultTopic: popupWindow.selectedDefualtTopic
+//        typeCount: popupWindow.typeCounter
     }
 }

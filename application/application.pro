@@ -1,5 +1,5 @@
-QT += gui quick
-CONFIG += c++11
+QT += gui quick mqtt
+CONFIG += c++11 disable-desktop
 CONFIG -= debug_and_release debug_and_release_target
 
 DEFINES += QT_DEPRECATED_WARNINGS

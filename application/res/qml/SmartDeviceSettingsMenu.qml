@@ -7,60 +7,50 @@ Item {
     anchors.fill:parent
     property var targetObject: false
     property bool isEditing: editing
+    property string defaultTopic
+//    property int typeCount: 1
 
-    Item {
+    Label {
         id: nameItem
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: parent.top
-        anchors.topMargin: 10
-        anchors.leftMargin: 3
-        width: nameLabel.width + nameTextField.width
+        x: 50
+        y: 30
         height: nameTextField.height
-        Label {
-            id: nameLabel
-            anchors.top: parent.top
-            anchors.topMargin: 3
-            anchors.bottom: parent.bottom
-            height: 50
-            text: "Device Name:"
-            font.pointSize: 20
-        }
-        TextField {
-            id: nameTextField
-            anchors.left: nameLabel.right
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.leftMargin: 5
-            height: 50
-            width: 140
-            font.pixelSize: 24
-            color: Style.lightGreen
-        }
+        text: "Device Name:"
+        font.pointSize: 20
+    }
+    TextField {
+        id: nameTextField
+        x: 320
+        anchors.verticalCenter: nameItem.verticalCenter
+        anchors.leftMargin: 5
+        height: 50
+        width: 300
+        text: isEditing ? smartDevicesModel.data(givenIndex, SmartDevicesModel.DeviceName) : "Object " + smartDevicesModel.objectCounter
+        font.pixelSize: 24
+        color: Style.lightGreen
+        horizontalAlignment: TextInput.AlignHCenter
     }
 
-    Item {
+
+    Label {
         id: ssidItem
-        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.left: nameItem.left
         anchors.top: nameItem.bottom
         anchors.topMargin: 10
-        anchors.leftMargin: 3
-        width: ssidLabel.width + ssidTextField.width
-        height: ssidTextField.height
-        Label {
-            id: ssidLabel
-            anchors.top: parent.top
-            height: 50
-            text: "SSID:"
-            font.pointSize: 20
-        }
-        TextField {
-            id: ssidTextField
-            anchors.left: ssidLabel.right
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.leftMargin: 5
-            width: 140
-            font.pixelSize: 24
-            color: Style.lightGreen
-        }
+        height: topicTextField.height
+        text: "Topic:"
+        font.pointSize: 20
+    }
+    TextField {
+        id: topicTextField
+        anchors.left: nameTextField.left
+        anchors.verticalCenter: ssidItem.verticalCenter
+        anchors.leftMargin: 5
+        text: isEditing ? smartDevicesModel.data(givenIndex, SmartDevicesModel.TopicString) : defaultTopic + "/" + smartDevicesModel.objectCounter
+        width: nameTextField.width
+        horizontalAlignment: nameTextField.horizontalAlignment
+        font.pixelSize: 24
+        color: Style.lightGreen
     }
 
     Button {
@@ -71,7 +61,9 @@ Item {
         width: 120
         text: "Accept"
         onClicked: {
+            smartDevicesModel.incObjectCounter()
             smartDevicesModel.setData(givenIndex,nameTextField.text,SmartDevicesModel.DeviceName)
+            smartDevicesModel.setData(givenIndex,topicTextField.text,SmartDevicesModel.TopicString)
             if (!isEditing)
             {
                 smartDevicesModel.add()

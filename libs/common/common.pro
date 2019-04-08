@@ -1,4 +1,5 @@
 QT -= gui
+QT += mqtt
 
 CONFIG += c++11
 CONFIG -= app_bundle debug_and_release debug_and_release_target
@@ -8,11 +9,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     main.cpp \
     devicetype.cpp \
-    smartdevice.cpp
+    smartdevice.cpp \
+    qmlmqttclient.cpp
 
 HEADERS += \
     devicetype.h \
-    smartdevice.h
+    smartdevice.h \
+    qmlmqttclient.h
 
 ! include( ../libs.pri ) {
     error( "Couldn't find the libs.pri file!" )

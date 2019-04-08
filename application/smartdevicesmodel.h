@@ -17,7 +17,8 @@ public:
         ImageSource,
         ImageWidthScaler,
         ImageHeightScaler,
-        isRegistered
+        isRegistered,
+        TopicString
     };
     Q_ENUM(roles)
 
@@ -33,17 +34,27 @@ public:
     bool insertRows(int position, int rows, const QModelIndex &index = QModelIndex()) override;
     bool removeRows(int position, int rows, const QModelIndex &index = QModelIndex()) override;
 
+    Q_PROPERTY(int objectCounter READ objectCounter NOTIFY objectCounterChanged)
+
+    int objectCounter();
+
 signals:
+    void objectCounterChanged();
 
 public slots: // Same as Q_INVOKABLE
     bool setData(int row, const QVariant &value, int role);
+    QVariant data(int row, int role) const;
     void add();
     void resetAtIndex(int row);
+
+    void incObjectCounter();
 
 private:
     QList<QSharedPointer<SmartDevice>> devices;
 
     QHash<int, QByteArray> roleNames() const override;
+
+    int m_objectCounter;
 };
 
 #endif // SMARTDEVICESMODEL_H
