@@ -55,18 +55,6 @@ Rectangle {
     }
 
     ListModel {
-        id: loaderTypes
-        ListElement {
-            deviceTypeName: "button"
-            qmlUrl: "qrc:/qml/ComplexSmartButton.qml"
-        }
-        ListElement {
-            deviceTypeName: "sensor"
-            qmlUrl: "qrc:/qml/SmartSensor.qml"
-        }
-    }
-
-    ListModel {
         id: listModel
         ListElement {
             deviceType: "SmartBulb"
@@ -75,6 +63,7 @@ Rectangle {
             imageHeightScaler: 1.35
             defaultTopic: "/home/lights"
             settingsMenu: "qrc:/qml/SmartDeviceSettingsMenu.qml"
+            qmlLoaderUrl: "qrc:/qml/SmartSensor.qml"
             //property int typeCount: 1
         }
         ListElement {
@@ -84,6 +73,17 @@ Rectangle {
             imageHeightScaler: 2
             defaultTopic: "/home/relay"
             settingsMenu: "qrc:/qml/SmartDeviceSettingsMenu.qml"
+            qmlLoaderUrl: "qrc:/qml/ComplexSmartButton.qml"
+            //property int typeCount: 1
+        }
+        ListElement {
+            deviceType: "Sensor"
+            imageSource: "qrc:/img/Wireless-icon.png" //TODO change these to a sensor icon (resistor?) and other stuff
+            imageWidthScaler: 2
+            imageHeightScaler: 2
+            defaultTopic: "/home/relay"
+            settingsMenu: "qrc:/qml/SmartDeviceSettingsMenu.qml"
+            qmlLoaderUrl: "qrc:/qml/ComplexSmartButton.qml"
             //property int typeCount: 1
         }
     }
