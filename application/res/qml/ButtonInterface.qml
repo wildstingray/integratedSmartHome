@@ -24,18 +24,6 @@ Item {
         }
     }
 
-    ListModel {
-        id: loaderTypes
-        ListElement {
-            deviceTypeName: "button"
-            qmlUrl: "qrc:/qml/ComplexSmartButton.qml"
-        }
-        ListElement {
-            deviceTypeName: "sensor"
-            qmlUrl: "qrc:/qml/SmartSensor.qml"
-        }
-    }
-
     GridView {
         id: buttonListView
         anchors.fill: parent

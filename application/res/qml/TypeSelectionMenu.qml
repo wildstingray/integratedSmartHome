@@ -3,13 +3,16 @@ import QtQuick.Controls 2.2
 import QtQuick.Controls.Material 2.2
 import com.integratedSmartHome 1.0
 
-Popup {
+Rectangle {
+    id: popupWindow
+    color: Style.darkGray
     property var givenIndex: index
     property string selectedDefualtTopic
-//    property int typeCounter: 1
-    id: popupWindow
+    property string deviceSettingsMenu: "qrc:/qml/SmartDeviceSettingsMenu.qml"
+    //    property int typeCounter: 1
     x: 10
     y: 10
+    z: 1
     width: parent.width - 20
     height: parent.height - 20
     Component {
@@ -34,6 +37,8 @@ Popup {
                     successful &= smartDevicesModel.setData(givenIndex,button.heightScaler,SmartDevicesModel.ImageHeightScaler)
                     if (successful)
                     {
+                        popupWindow.deviceSettingsMenu = settingsMenu
+                        menuLoader.visible = true
                         buttonView.visible = false
                     }
                     else
@@ -43,9 +48,21 @@ Popup {
                     }
 
 
-//                    popupWindow.close()
+                    //popupWindow.close()
                 }
             }
+        }
+    }
+
+    ListModel {
+        id: loaderTypes
+        ListElement {
+            deviceTypeName: "button"
+            qmlUrl: "qrc:/qml/ComplexSmartButton.qml"
+        }
+        ListElement {
+            deviceTypeName: "sensor"
+            qmlUrl: "qrc:/qml/SmartSensor.qml"
         }
     }
 
@@ -57,7 +74,8 @@ Popup {
             imageWidthScaler: 1.6
             imageHeightScaler: 1.35
             defaultTopic: "/home/lights"
-//            property int typeCount: 1
+            settingsMenu: "qrc:/qml/SmartDeviceSettingsMenu.qml"
+            //property int typeCount: 1
         }
         ListElement {
             deviceType: "Other"
@@ -65,7 +83,8 @@ Popup {
             imageWidthScaler: 2
             imageHeightScaler: 2
             defaultTopic: "/home/relay"
-//            property int typeCount: 1
+            settingsMenu: "qrc:/qml/SmartDeviceSettingsMenu.qml"
+            //property int typeCount: 1
         }
     }
 
@@ -80,11 +99,18 @@ Popup {
         clip: true
     }
 
+    Loader {
+        id: menuLoader
+        visible: false
+        z: 2
+        source: popupWindow.deviceSettingsMenu
+    }
+
     SmartDeviceSettingsMenu {
         visible: !buttonView.visible
         targetObject: popupWindow
         isEditing: editing
         defaultTopic: popupWindow.selectedDefualtTopic
-//        typeCount: popupWindow.typeCounter
+        //        typeCount: popupWindow.typeCounter
     }
 }
