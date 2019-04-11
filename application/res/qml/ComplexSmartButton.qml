@@ -5,8 +5,9 @@ import com.integratedSmartHome 1.0
 SmartButton {
     anchors.fill: parent
     anchors.margins: 3
+    property int givenIndex: index
     image: imageSource
-    hasImage: imageSource != "qrc:/img/plus.png"
+    hasImage: image != "qrc:/img/plus.png"
     widthScaler: imageWidthScaler
     heightScaler: imageHeightScaler
     checkable: hasImage
@@ -27,7 +28,7 @@ SmartButton {
         else {
             var component = Qt.createComponent("TypeSelectionMenu.qml");
             win = component.createObject(mainItem);
-            win.open();
+//            win.open();
         }
     }
 

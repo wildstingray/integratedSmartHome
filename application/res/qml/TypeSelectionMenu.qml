@@ -7,9 +7,10 @@ Rectangle {
     id: popupWindow
     color: Style.darkGray
     property var givenIndex: index
-    property string selectedDefualtTopic
-    property string deviceSettingsMenu: "qrc:/qml/SmartDeviceSettingsMenu.qml"
-    //    property int typeCounter: 1
+
+    //Menu information
+    property bool isEditing: false
+
     x: 10
     y: 10
     z: 1
@@ -18,8 +19,8 @@ Rectangle {
     Component {
         id: popupDelegate
         Item {
-            width: popupWindow.width/3 - 10
-            height: popupWindow.height/2
+            height: buttonView.cellHeight
+            width: buttonView.cellWidth
             SmartButton {
                 id: button
                 anchors.fill: parent
@@ -28,27 +29,10 @@ Rectangle {
                 widthScaler: imageWidthScaler
                 heightScaler: imageHeightScaler
                 labelText: deviceType
-                property bool successful: true
                 onClicked: {
-                    popupWindow.selectedDefualtTopic = defaultTopic
-                    successful = true
-                    successful &= smartDevicesModel.setData(givenIndex,button.image,SmartDevicesModel.ImageSource)
-                    successful &= smartDevicesModel.setData(givenIndex,button.widthScaler,SmartDevicesModel.ImageWidthScaler)
-                    successful &= smartDevicesModel.setData(givenIndex,button.heightScaler,SmartDevicesModel.ImageHeightScaler)
-                    if (successful)
-                    {
-                        popupWindow.deviceSettingsMenu = settingsMenu
-                        menuLoader.visible = true
-                        buttonView.visible = false
-                    }
-                    else
-                    {
-                        smartDevicesModel.resetAtIndex(givenIndex)
-                        //TODO throw warning to user on failure
-                    }
-
-
-                    //popupWindow.close()
+                    menuLoader.setSource(settingsMenu)
+                    menuLoader.visible = true
+                    buttonView.visible = false
                 }
             }
         }
@@ -57,34 +41,19 @@ Rectangle {
     ListModel {
         id: listModel
         ListElement {
-            deviceType: "SmartBulb"
+            deviceType: "Button"
             imageSource: "qrc:/img/lightbulbicon_Black.png"
             imageWidthScaler: 1.6
             imageHeightScaler: 1.35
-            defaultTopic: "/home/lights"
             settingsMenu: "qrc:/qml/SmartDeviceSettingsMenu.qml"
-            qmlLoaderUrl: "qrc:/qml/SmartSensor.qml"
-            //property int typeCount: 1
-        }
-        ListElement {
-            deviceType: "Other"
-            imageSource: "qrc:/img/Wireless-icon.png"
-            imageWidthScaler: 2
-            imageHeightScaler: 2
-            defaultTopic: "/home/relay"
-            settingsMenu: "qrc:/qml/SmartDeviceSettingsMenu.qml"
-            qmlLoaderUrl: "qrc:/qml/ComplexSmartButton.qml"
-            //property int typeCount: 1
         }
         ListElement {
             deviceType: "Sensor"
-            imageSource: "qrc:/img/Wireless-icon.png" //TODO change these to a sensor icon (resistor?) and other stuff
+            imageSource: "qrc:/img/tempSensor.png"
             imageWidthScaler: 2
-            imageHeightScaler: 2
-            defaultTopic: "/home/relay"
-            settingsMenu: "qrc:/qml/SmartDeviceSettingsMenu.qml"
-            qmlLoaderUrl: "qrc:/qml/ComplexSmartButton.qml"
-            //property int typeCount: 1
+            imageHeightScaler: 1.45
+            settingsMenu: "qrc:/qml/SmartSensorSettingsMenu.qml"
+            qmlLoaderUrl: "qrc:/qml/SmartSensor.qml"
         }
     }
 
@@ -103,14 +72,6 @@ Rectangle {
         id: menuLoader
         visible: false
         z: 2
-        source: popupWindow.deviceSettingsMenu
-    }
-
-    SmartDeviceSettingsMenu {
-        visible: !buttonView.visible
-        targetObject: popupWindow
-        isEditing: editing
-        defaultTopic: popupWindow.selectedDefualtTopic
-        //        typeCount: popupWindow.typeCounter
+        anchors.fill: parent
     }
 }

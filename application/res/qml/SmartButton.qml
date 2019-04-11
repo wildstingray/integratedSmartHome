@@ -28,14 +28,14 @@ Button {
         height: parent.height/button.heightScaler
         source: "qrc:/img/plus.png"
 
-        //Might be useful in the future to use QQmlAbstractUrlInterceptor with prerendered versions of an icon
+        //Might be useful in the future to use Qt File selector with prerendered versions of an icon
         //for the different theme colors. (example: "+dark")
         //Would allow for different icons besides just a color change to be used
         ColorOverlay {
             visible: parent.parent.hasImage
             anchors.fill: parent
             source: parent
-            color: parent.parent.checked ? "white" : "Black"
+            color: ((parent.parent.checked) && (icon.source !== "")) ? "white" : "Black"
         }
     }
 }

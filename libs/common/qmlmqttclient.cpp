@@ -62,7 +62,7 @@ qint32 QmlMqttClient::publish(const QString &topicName, const int &message, quin
 void QmlMqttClient::pingSuccessful()
 {
     qDebug() << "Connected";
-    subscribe("/raspi");
+    subscribe("raspi/#");
 }
 
 void QmlMqttClient::stateChange()
