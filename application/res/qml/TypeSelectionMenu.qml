@@ -8,9 +8,6 @@ Rectangle {
     color: Style.darkGray
     property var givenIndex: index
 
-    //Menu information
-    property bool isEditing: false
-
     x: 10
     y: 10
     z: 1
@@ -78,6 +75,7 @@ Rectangle {
 
     Loader {
         id: menuLoader
+        property bool isEditing: editing
         visible: false
         z: 2
         anchors.fill: parent

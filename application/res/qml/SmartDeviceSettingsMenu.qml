@@ -121,17 +121,10 @@ Item {
             color: Style.lightGreen
         }
 
-        Button {
-            enabled: !pictureSelection.visible
-            id: acceptButton
-            anchors.bottom: parent.bottom
-            anchors.right: parent.horizontalCenter
-            anchors.margins: 3
-            height: 50
-            width: 120
-            text: "Accept"
+        SettingsMenuButtons {
+            isEnabled: !pictureSelection.visible
             property bool successful: true
-            onClicked: {
+            onAccepted: function() {
                 successful = true
                 smartDevicesModel.incObjectCounter()
                 successful &= smartDevicesModel.setData(givenIndex,settingsItem.imageSource,SmartDevicesModel.ImageSource)
@@ -151,18 +144,6 @@ Item {
                     smartDevicesModel.add()
                 }
 
-                popupWindow.visible = false;
-            }
-        }
-
-        Button {
-            anchors.bottom: acceptButton.bottom
-            anchors.left: parent.horizontalCenter
-            anchors.margins: 3
-            height: acceptButton.height
-            width: acceptButton.width
-            text: "Cancel"
-            onClicked: {
                 popupWindow.visible = false;
             }
         }

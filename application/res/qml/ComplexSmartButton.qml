@@ -59,7 +59,6 @@ SmartButton {
             editing = true
             var component = Qt.createComponent("TypeSelectionMenu.qml");
             win = component.createObject(mainItem);
-            win.open();
         }
     }
 }

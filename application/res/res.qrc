@@ -21,5 +21,6 @@
         <file>img/rgb.png</file>
         <file>qml/RGBSettingsMenu.qml</file>
         <file>qml/RGBDevice.qml</file>
+        <file>qml/SettingsMenuButtons.qml</file>
     </qresource>
 </RCC>
