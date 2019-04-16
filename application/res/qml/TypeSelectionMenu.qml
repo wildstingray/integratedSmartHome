@@ -55,6 +55,14 @@ Rectangle {
             settingsMenu: "qrc:/qml/SmartSensorSettingsMenu.qml"
             qmlLoaderUrl: "qrc:/qml/SmartSensor.qml"
         }
+        ListElement {
+            deviceType: "Color Output"
+            imageSource: "qrc:/img/rgb.png"
+            imageWidthScaler: 1.5
+            imageHeightScaler: 1.5
+            settingsMenu: "qrc:/qml/RGBSettingsMenu.qml"
+            qmlLoaderUrl: "qrc:/qml/RGBDevice.qml"
+        }
     }
 
     GridView {

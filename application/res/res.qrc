@@ -18,5 +18,8 @@
         <file>qml/SmartSensor.qml</file>
         <file>qml/SmartSensorSettingsMenu.qml</file>
         <file>img/tempSensor.png</file>
+        <file>img/rgb.png</file>
+        <file>qml/RGBSettingsMenu.qml</file>
+        <file>qml/RGBDevice.qml</file>
     </qresource>
 </RCC>
