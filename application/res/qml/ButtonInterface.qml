@@ -21,6 +21,11 @@ Item {
                 anchors.fill: parent
                 source: qmlUrl
             }
+            Connections {
+                target: dynamicLoader.item
+                onDisableInteractive: buttonListView.interactive = false
+                onEnableInteractive: buttonListView.interactive = true
+            }
         }
     }
 
