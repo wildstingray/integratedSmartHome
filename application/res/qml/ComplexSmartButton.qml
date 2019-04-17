@@ -35,7 +35,7 @@ SmartButton {
     SmartButton {
         anchors.top: parent.top
         anchors.right: parent.right
-        width: parent/16
+        width: parent.width/4
         height: width
         visible: parent.hasImage
         image: "qrc:/img/trash.png"
@@ -49,7 +49,7 @@ SmartButton {
     SmartButton {
         anchors.top: parent.top
         anchors.left: parent.left
-        width: parent/16
+        width: parent.width/4
         height: width
         visible: parent.hasImage
         image: "qrc:/img/pencil.png"

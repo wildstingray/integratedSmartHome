@@ -5,6 +5,8 @@ import "./colorWheelInformation"
 import "colorWheelInformation/ColorUtils.js" as ColorUtils
 
 Rectangle {
+    property string outputRGBValue: currentColor.text
+
     Material.elevation: 2
     id: root
     signal disableInteractive
@@ -98,6 +100,8 @@ Rectangle {
             onAccepted: {
                 root.accepted()
             }
+            onEnableMovement: root.enableInteractive()
+            onDisableMovement: root.disableInteractive()
         }
     }
 
@@ -154,7 +158,7 @@ Rectangle {
                 width: parent.width - captionBox.width
                 TextInput {
                     id: currentColor
-                    color: "#AAAAAA"
+                    color: Style.accent
                     selectionColor: "#FF7777AA"
                     font.pixelSize: 12
                     font.capitalization: "AllUppercase"
@@ -167,6 +171,8 @@ Rectangle {
                     validator: RegExpValidator {
                         regExp: /^([A-Fa-f0-9]{6})$/
                     }
+                    //TODO
+                    onTextChanged:  { }
                     onEditingFinished: {
                         var colorTmp = Qt.vector4d( parseInt(text.substr(0, 2), 16) / 255,
                                                    parseInt(text.substr(2, 2), 16) / 255,

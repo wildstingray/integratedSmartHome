@@ -9,6 +9,9 @@ Item {
     property real value
     signal accepted
 
+    signal disableMovement
+    signal enableMovement
+
     states :
         // When user is moving the slider
         State {
@@ -56,8 +59,12 @@ Item {
             }
         }
         onPositionChanged: sliderHandleMouse(mouse)
-        onPressed: sliderHandleMouse(mouse)
+        onPressed: {
+            root.disableMovement()
+            sliderHandleMouse(mouse)
+        }
         onReleased: {
+            root.enableMovement()
             root.state = ''
             root.accepted()
         }
