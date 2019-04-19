@@ -21,6 +21,7 @@ public:
         TopicString,
         QmlUrl,
         DeviceTypeName,
+        Payload,
     };
     Q_ENUM(roles)
 
@@ -50,6 +51,8 @@ public slots: // Same as Q_INVOKABLE
     void resetAtIndex(int row);
 
     void incObjectCounter();
+
+    void newMessage(QString topic, QString payload);
 
 private:
     QList<QSharedPointer<SmartDevice>> devices;

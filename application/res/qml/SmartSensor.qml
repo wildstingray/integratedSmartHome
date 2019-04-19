@@ -4,6 +4,13 @@ import com.integratedSmartHome 1.0
 
 Rectangle {
     anchors.fill: parent
-    color: "red"
+    color: Style.darkGray
+    anchors.margins: 3
+
+    Label {
+        anchors.centerIn: parent
+        font.pixelSize: 60
+        text: payload
+    }
 
 }

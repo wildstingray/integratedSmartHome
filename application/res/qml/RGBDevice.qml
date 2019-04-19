@@ -10,6 +10,7 @@ ColorWheel {
 //    color: "blue"
     onDisableInteractive: buttonListView.interactive = false
     onEnableInteractive: buttonListView.interactive = true
+    property string outputValue
 
     onOutputRGBValueChanged: {
         if (raspiClient.state === MqttClient.Disconnected)
@@ -17,9 +18,11 @@ ColorWheel {
             raspiClient.connectToHost()
             console.log("Client Connecting...")
         }
+        outputValue = outputRGBValue;
+        outputValue = "#" + outputValue.replace('-', '0');
 
-        raspiClient.publish(topicName, '#' + outputRGBValue)
-        console.log("Sent Topic: " + topicName + " with payload: " + outputRGBValue)
+        raspiClient.publishString(topicName, outputValue)
+        console.log("Sent Topic: " + topicName + " with payload: " + outputValue)
     }
 
 

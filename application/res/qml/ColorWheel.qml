@@ -36,6 +36,7 @@ Rectangle {
         height: parent.height/1.3
         width: parent.width/1.3
         anchors.left: parent.left
+        anchors.leftMargin: -5
         anchors.top: parent.top
         anchors.topMargin: 3
 
@@ -171,8 +172,6 @@ Rectangle {
                     validator: RegExpValidator {
                         regExp: /^([A-Fa-f0-9]{6})$/
                     }
-                    //TODO
-                    onTextChanged:  { }
                     onEditingFinished: {
                         var colorTmp = Qt.vector4d( parseInt(text.substr(0, 2), 16) / 255,
                                                    parseInt(text.substr(2, 2), 16) / 255,

@@ -64,6 +64,9 @@ QVariant SmartDevicesModel::data(const QModelIndex &index, int role) const
         case DeviceTypeName:
             returnVar = devices.at(index.row())->deviceTypeName();
             break;
+        case Payload:
+            returnVar = devices.at(index.row())->payload();
+            break;
         default:
             break;
     }
@@ -115,6 +118,9 @@ bool SmartDevicesModel::setData(const QModelIndex &index, const QVariant &value,
                 break;
             case DeviceTypeName:
                 device->setDeviceTypeName(value.toString());
+                break;
+            case Payload:
+                device->setPayload(value.toString());
                 break;
             default:
                 break;
@@ -173,6 +179,17 @@ void SmartDevicesModel::incObjectCounter()
     m_objectCounter++;
 }
 
+void SmartDevicesModel::newMessage(QString topic, QString payload)
+{
+    for (int i = 0; i < devices.length(); i++)
+    {
+        if (devices.at(i)->topicString() == topic)
+        {
+            this->setData(i, payload, Payload);
+        }
+    }
+}
+
 QHash<int, QByteArray> SmartDevicesModel::roleNames() const
 {
     QHash<int, QByteArray> roles;
@@ -184,5 +201,6 @@ QHash<int, QByteArray> SmartDevicesModel::roleNames() const
     roles[TopicString] = "topicName";
     roles[QmlUrl] = "qmlUrl";
     roles[DeviceTypeName] = "deviceTypeName";
+    roles[Payload] = "payload";
     return roles;
 }

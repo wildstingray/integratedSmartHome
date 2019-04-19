@@ -7,6 +7,7 @@ SmartDevice::SmartDevice(QObject *parent) : QObject(parent)
     m_topicString = QMqttTopicName("/Test");
     m_deviceTypeName = "Default";
     m_qmlUrl = "qrc:/qml/ComplexSmartButton.qml";
+    m_payload = "0";
 }
 
 QString SmartDevice::deviceName()
@@ -76,5 +77,19 @@ void SmartDevice::setDeviceTypeName(QString newTypeName)
     {
         m_deviceTypeName = newTypeName;
         emit deviceTypeNameChanged(m_deviceTypeName);
+    }
+}
+
+QString SmartDevice::payload()
+{
+    return m_payload;
+}
+
+void SmartDevice::setPayload(QString newPayload)
+{
+    if (m_payload != newPayload)
+    {
+        m_payload = newPayload;
+        emit payloadChanged(newPayload);
     }
 }

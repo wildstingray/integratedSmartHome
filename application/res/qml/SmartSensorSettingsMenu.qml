@@ -65,9 +65,12 @@ Item {
                 console.log("ERROR: Cannot set model values")
 
             }
-            else if (!isEditing)
-            {
-                smartDevicesModel.add()
+            else {
+                if (!isEditing)
+                {
+                    smartDevicesModel.add()
+                }
+                raspiClient.subscribe(topicTextField.text)
             }
 
             popupWindow.visible = false;
