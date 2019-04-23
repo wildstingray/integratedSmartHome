@@ -7,11 +7,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     main.cpp \
     smartdevicesmodel.cpp \
-    globalproperties.cpp
+    globalproperties.cpp \
+    jsonfilehandler.cpp
 
 HEADERS += \
     smartdevicesmodel.h \
-    globalproperties.h
+    globalproperties.h \
+    jsonfilehandler.h
 
 RESOURCES += \
         res/res.qrc

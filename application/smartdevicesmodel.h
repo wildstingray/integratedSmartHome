@@ -5,6 +5,7 @@
 #include <QList>
 #include <QAbstractListModel>
 #include "smartdevice.h"
+#include "jsonfilehandler.h"
 #include <QSharedPointer>
 
 class SmartDevicesModel : public QAbstractListModel
@@ -27,6 +28,8 @@ public:
 
 public:
     explicit SmartDevicesModel(QObject *parent = nullptr);
+
+    void setJsonHandlerPtr(JsonFileHandler *jsonHandler);
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
@@ -60,6 +63,10 @@ private:
     QHash<int, QByteArray> roleNames() const override;
 
     int m_objectCounter;
+
+    void readJsonFile();
+    void saveJsonFile();
+    JsonFileHandler * m_jsonHandler;
 };
 
 #endif // SMARTDEVICESMODEL_H

@@ -6,6 +6,7 @@
 #include "smartdevicesmodel.h"
 #include "globalproperties.h"
 #include "qmlmqttclient.h"
+#include "jsonfilehandler.h"
 
 int main(int argc, char *argv[])
 {
@@ -15,9 +16,10 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     //C++
+    JsonFileHandler fileHandler(&app);
     SmartDevicesModel smartDevicesModel(&app);
-    smartDevicesModel.add();
-    GlobalProperties globalProperties(&app);
+    smartDevicesModel.setJsonHandlerPtr(&fileHandler);
+    GlobalProperties globalProperties(&app); //TODO make this useful
 
     //QML
     QQmlApplicationEngine engine;

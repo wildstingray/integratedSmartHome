@@ -1,9 +1,21 @@
 #include "smartdevicesmodel.h"
 #include <QModelIndex>
 
+#include <QJsonArray>
+#include <QJsonObject>
+
+#define JSON_ARRAY_NAME "Devices"
+#define JSON_SAVE_NAME "SmartDevicesModel"
+
 SmartDevicesModel::SmartDevicesModel(QObject *parent) : QAbstractListModel(parent)
 {
     m_objectCounter = 1;
+}
+
+void SmartDevicesModel::setJsonHandlerPtr(JsonFileHandler * jsonHandler)
+{
+    m_jsonHandler = jsonHandler;
+    readJsonFile();
 }
 
 void SmartDevicesModel::add()
@@ -14,7 +26,7 @@ void SmartDevicesModel::add()
 void SmartDevicesModel::resetAtIndex(int row)
 {
     removeRows(row, 1, QModelIndex());
-    if (devices.length() == row)
+    if (devices.length() == 0)
     {
         this->add();
     }
@@ -127,6 +139,7 @@ bool SmartDevicesModel::setData(const QModelIndex &index, const QVariant &value,
         }
         //device->deleteLater();
         emit dataChanged(index, index, {role});
+        saveJsonFile();
         return true;
     }
     return false;
@@ -148,6 +161,7 @@ bool SmartDevicesModel::insertRows(int position, int rows, const QModelIndex &in
     for (int row = 0; row < rows; ++row) {
         devices.insert(position, QSharedPointer<SmartDevice>(new SmartDevice(this)));
     }
+    saveJsonFile();
 
     endInsertRows();
     return true;
@@ -164,6 +178,8 @@ bool SmartDevicesModel::removeRows(int position, int rows, const QModelIndex &in
         //temp->deleteLater(); TODO do I need this? SEVERE memory issue if I do
         //QSharedPointer is supposed to handle deletion, but will it work in this context?
     }
+
+    saveJsonFile();
 
     endRemoveRows();
     return true;
@@ -203,4 +219,79 @@ QHash<int, QByteArray> SmartDevicesModel::roleNames() const
     roles[DeviceTypeName] = "deviceTypeName";
     roles[Payload] = "payload";
     return roles;
+}
+
+void SmartDevicesModel::readJsonFile()
+{
+    if (m_jsonHandler == nullptr) return;
+
+    QJsonObject obj;
+    m_jsonHandler->readObject(obj, JSON_SAVE_NAME);
+
+    QJsonArray jsonArray = obj[JSON_ARRAY_NAME].toArray();
+
+    for (int i = 0; i < jsonArray.count(); i++)
+    {
+        //TODO use QMetaEnum to do this Dynamically
+        this->add();
+        QJsonObject obj = jsonArray.at(i).toObject();
+        QStringList keyList = obj.keys();
+        if (keyList.contains("DeviceName"))
+            this->setData(i, obj["DeviceName"].toString(), SmartDevicesModel::DeviceName);
+
+        if (keyList.contains("ImageSource"))
+            this->setData(i, obj["ImageSource"].toString(), SmartDevicesModel::ImageSource);
+
+        if (keyList.contains("ImageWidthScaler"))
+            this->setData(i, obj["ImageWidthScaler"].toString(), SmartDevicesModel::ImageWidthScaler);
+
+        if (keyList.contains("ImageHeightScaler"))
+            this->setData(i, obj["ImageHeightScaler"].toString(), SmartDevicesModel::ImageHeightScaler);
+
+        if (keyList.contains("isRegistered"))
+            this->setData(i, obj["isRegistered"].toString(), SmartDevicesModel::isRegistered);
+
+        if (keyList.contains("TopicString"))
+            this->setData(i, obj["TopicString"].toString(), SmartDevicesModel::TopicString);
+
+        if (keyList.contains("QmlUrl"))
+            this->setData(i, obj["QmlUrl"].toString(), SmartDevicesModel::QmlUrl);
+
+        if (keyList.contains("DeviceTypeName"))
+            this->setData(i, obj["DeviceTypeName"].toString(), SmartDevicesModel::DeviceTypeName);
+
+        if (keyList.contains("Payload"))
+            this->setData(i, obj["Payload"].toString(), SmartDevicesModel::Payload);
+    }
+    if (this->data(rowCount() - 1, DeviceName).toString() != "")
+    {
+        this->add();
+    }
+
+}
+
+void SmartDevicesModel::saveJsonFile()
+{
+    if (m_jsonHandler == nullptr) return;
+
+    QJsonArray jsonArray;
+    for (int i = 0; i < rowCount(); i++)
+    {
+        //TODO use QMetaEnum to do this dynamically
+        QJsonObject obj;
+        obj["DeviceName"] = data(i, SmartDevicesModel::DeviceName).toString();
+        obj["ImageSource"] = data(i, SmartDevicesModel::ImageSource).toString();
+        obj["ImageWidthScaler"] = data(i, SmartDevicesModel::ImageWidthScaler).toString();
+        obj["ImageHeightScaler"] = data(i, SmartDevicesModel::ImageHeightScaler).toString();
+        obj["isRegistered"] = data(i, SmartDevicesModel::isRegistered).toString();
+        obj["TopicString"] = data(i, SmartDevicesModel::TopicString).toString();
+        obj["QmlUrl"] = data(i, SmartDevicesModel::QmlUrl).toString();
+        obj["DeviceTypeName"] = data(i, SmartDevicesModel::DeviceTypeName).toString();
+        obj["Payload"] = data(i, SmartDevicesModel::Payload).toString();
+        jsonArray.append(obj);
+    }
+    QJsonObject docObject;
+    docObject[JSON_ARRAY_NAME] = jsonArray;
+
+    m_jsonHandler->saveObject(docObject, JSON_SAVE_NAME);
 }
