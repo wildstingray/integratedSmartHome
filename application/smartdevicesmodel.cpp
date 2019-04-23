@@ -58,6 +58,15 @@ QVariant SmartDevicesModel::data(const QModelIndex &index, int role) const
         case isRegistered:
 //            returnVar = devices.at(index.row())->deviceType()->getImageSource() != DeviceType().getImageSource();
             break;
+        case QmlUrl:
+            returnVar = devices.at(index.row())->qmlUrl();
+            break;
+        case DeviceTypeName:
+            returnVar = devices.at(index.row())->deviceTypeName();
+            break;
+        case Payload:
+            returnVar = devices.at(index.row())->payload();
+            break;
         default:
             break;
     }
@@ -80,19 +89,16 @@ bool SmartDevicesModel::setData(const QModelIndex &index, const QVariant &value,
         switch (role) {
             case DeviceName:
                 device->setDeviceName(value.toString());
-//                emit device->deviceTypeChanged(device->deviceType());
                 break;
             case ImageSource:
                 type.setImageSource(value.toString());
                 device->setDeviceType(type);
-//                emit device->deviceTypeChanged(device->deviceType());
                 break;
             case ImageWidthScaler:
                 type.setImageWidthScaler(value.toDouble(&ok));
                 if (ok)
                 {
                     device->setDeviceType(type);
-//                    emit device->deviceTypeChanged(device->deviceType());
                 }
                 else return false;
                 break;
@@ -101,12 +107,20 @@ bool SmartDevicesModel::setData(const QModelIndex &index, const QVariant &value,
                 if (ok)
                 {
                     device->setDeviceType(type);
-//                    emit device->deviceTypeChanged(device->deviceType());
                 }
                 else return false;
                 break;
             case TopicString:
                 device->setTopicString(value.toString());
+                break;
+            case QmlUrl:
+                device->setQmlUrl(value.toString());
+                break;
+            case DeviceTypeName:
+                device->setDeviceTypeName(value.toString());
+                break;
+            case Payload:
+                device->setPayload(value.toString());
                 break;
             default:
                 break;
@@ -165,6 +179,17 @@ void SmartDevicesModel::incObjectCounter()
     m_objectCounter++;
 }
 
+void SmartDevicesModel::newMessage(QString topic, QString payload)
+{
+    for (int i = 0; i < devices.length(); i++)
+    {
+        if (devices.at(i)->topicString() == topic)
+        {
+            this->setData(i, payload, Payload);
+        }
+    }
+}
+
 QHash<int, QByteArray> SmartDevicesModel::roleNames() const
 {
     QHash<int, QByteArray> roles;
@@ -174,5 +199,8 @@ QHash<int, QByteArray> SmartDevicesModel::roleNames() const
     roles[ImageHeightScaler] = "imageHeightScaler";
     roles[isRegistered] = "isRegistered";
     roles[TopicString] = "topicName";
+    roles[QmlUrl] = "qmlUrl";
+    roles[DeviceTypeName] = "deviceTypeName";
+    roles[Payload] = "payload";
     return roles;
 }

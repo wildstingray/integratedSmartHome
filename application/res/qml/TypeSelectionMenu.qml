@@ -3,20 +3,21 @@ import QtQuick.Controls 2.2
 import QtQuick.Controls.Material 2.2
 import com.integratedSmartHome 1.0
 
-Popup {
-    property var givenIndex: index
-    property string selectedDefualtTopic
-//    property int typeCounter: 1
+Rectangle {
     id: popupWindow
+    color: Style.darkGray
+    property var givenIndex: index
+
     x: 10
     y: 10
+    z: 1
     width: parent.width - 20
     height: parent.height - 20
     Component {
         id: popupDelegate
         Item {
-            width: popupWindow.width/3 - 10
-            height: popupWindow.height/2
+            height: buttonView.cellHeight
+            width: buttonView.cellWidth
             SmartButton {
                 id: button
                 anchors.fill: parent
@@ -25,25 +26,10 @@ Popup {
                 widthScaler: imageWidthScaler
                 heightScaler: imageHeightScaler
                 labelText: deviceType
-                property bool successful: true
                 onClicked: {
-                    popupWindow.selectedDefualtTopic = defaultTopic
-                    successful = true
-                    successful &= smartDevicesModel.setData(givenIndex,button.image,SmartDevicesModel.ImageSource)
-                    successful &= smartDevicesModel.setData(givenIndex,button.widthScaler,SmartDevicesModel.ImageWidthScaler)
-                    successful &= smartDevicesModel.setData(givenIndex,button.heightScaler,SmartDevicesModel.ImageHeightScaler)
-                    if (successful)
-                    {
-                        buttonView.visible = false
-                    }
-                    else
-                    {
-                        smartDevicesModel.resetAtIndex(givenIndex)
-                        //TODO throw warning to user on failure
-                    }
-
-
-//                    popupWindow.close()
+                    menuLoader.setSource(settingsMenu)
+                    menuLoader.visible = true
+                    buttonView.visible = false
                 }
             }
         }
@@ -52,20 +38,27 @@ Popup {
     ListModel {
         id: listModel
         ListElement {
-            deviceType: "SmartBulb"
+            deviceType: "Button"
             imageSource: "qrc:/img/lightbulbicon_Black.png"
             imageWidthScaler: 1.6
             imageHeightScaler: 1.35
-            defaultTopic: "/home/lights"
-//            property int typeCount: 1
+            settingsMenu: "qrc:/qml/SmartDeviceSettingsMenu.qml"
         }
         ListElement {
-            deviceType: "Other"
-            imageSource: "qrc:/img/Wireless-icon.png"
+            deviceType: "Sensor"
+            imageSource: "qrc:/img/tempSensor.png"
             imageWidthScaler: 2
-            imageHeightScaler: 2
-            defaultTopic: "/home/relay"
-//            property int typeCount: 1
+            imageHeightScaler: 1.45
+            settingsMenu: "qrc:/qml/SmartSensorSettingsMenu.qml"
+            qmlLoaderUrl: "qrc:/qml/SmartSensor.qml"
+        }
+        ListElement {
+            deviceType: "Color Output"
+            imageSource: "qrc:/img/rgb.png"
+            imageWidthScaler: 1.5
+            imageHeightScaler: 1.5
+            settingsMenu: "qrc:/qml/RGBSettingsMenu.qml"
+            qmlLoaderUrl: "qrc:/qml/RGBDevice.qml"
         }
     }
 
@@ -80,11 +73,11 @@ Popup {
         clip: true
     }
 
-    SmartDeviceSettingsMenu {
-        visible: !buttonView.visible
-        targetObject: popupWindow
-        isEditing: editing
-        defaultTopic: popupWindow.selectedDefualtTopic
-//        typeCount: popupWindow.typeCounter
+    Loader {
+        id: menuLoader
+        property bool isEditing: editing
+        visible: false
+        z: 2
+        anchors.fill: parent
     }
 }

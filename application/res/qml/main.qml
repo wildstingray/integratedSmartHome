@@ -22,6 +22,15 @@ Window {
             id: raspiClientObj
             hostname: "localhost"
             portNum: 1883
+
+            onNewMessage: {
+                smartDevicesModel.newMessage(topic, payload)
+                console.log(topic + "   " + payload);
+            }
+
+            onMessageReceived: {
+                smartDevicesModel.newMessage(topic, message)
+            }
         }
 
         Rectangle {
@@ -43,7 +52,6 @@ Window {
         }
     }
 
-//TODO keyboard
     InputPanel {
         id: inputPanel
         z: 99

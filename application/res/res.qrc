@@ -14,5 +14,21 @@
         <file>img/plus.png</file>
         <file>img/trash.png</file>
         <file>img/Wireless-icon.png</file>
+        <file>qml/ComplexSmartButton.qml</file>
+        <file>qml/SmartSensor.qml</file>
+        <file>qml/SmartSensorSettingsMenu.qml</file>
+        <file>img/tempSensor.png</file>
+        <file>img/rgb.png</file>
+        <file>qml/RGBSettingsMenu.qml</file>
+        <file>qml/RGBDevice.qml</file>
+        <file>qml/SettingsMenuButtons.qml</file>
+        <file>qml/ColorWheel.qml</file>
+        <file>qml/colorWheelInformation/CheckerBoard.qml</file>
+        <file>qml/colorWheelInformation/ColorUtils.js</file>
+        <file>qml/colorWheelInformation/mathUtils.js</file>
+        <file>qml/colorWheelInformation/NumberBox.qml</file>
+        <file>qml/colorWheelInformation/PanelBorder.qml</file>
+        <file>qml/colorWheelInformation/VerticalSlider.qml</file>
+        <file>qml/colorWheelInformation/Wheel.qml</file>
     </qresource>
 </RCC>
