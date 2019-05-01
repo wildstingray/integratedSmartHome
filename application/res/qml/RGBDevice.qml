@@ -22,7 +22,7 @@ ColorWheel {
         outputValue = "#" + outputValue.replace('-', '0');
 
         raspiClient.publishString(topicName, outputValue)
-        console.log("Sent Topic: " + topicName + " with payload: " + outputValue)
+        console.log("Sent Topic: " + topicName + " with payload: " + outputValue.toUpperCase())
     }
 
 

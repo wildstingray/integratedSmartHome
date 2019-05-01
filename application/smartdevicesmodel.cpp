@@ -227,6 +227,7 @@ void SmartDevicesModel::readJsonFile()
 
     QJsonObject obj;
     m_jsonHandler->readObject(obj, JSON_SAVE_NAME);
+    if (obj.empty()) add();
 
     QJsonArray jsonArray = obj[JSON_ARRAY_NAME].toArray();
 

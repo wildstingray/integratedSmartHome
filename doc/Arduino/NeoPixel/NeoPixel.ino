@@ -12,7 +12,7 @@ Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
 // Update these with values suitable for your network.
 byte mac[]    = {  0xDE, 0xED, 0xBA, 0xFE, 0xFE, 0xED };
 IPAddress ip(192, 168, 1, 125);
-IPAddress server(192, 168, 1, 121);
+IPAddress server(192, 168, 43, 18);
 
 //Wifi Stuff
 const char* ssid     = "Jesses10+";
@@ -29,12 +29,56 @@ void callback(char* topic, byte* payload, unsigned int length) {
   }
   Serial.println();
 
-  if (payload[0] == 0x30)
+  if (payload[0] == '#')
   {
+    byte num1 = payload[1];
+    byte num2 = payload[2];
+    byte num3 = payload[3];
+    byte num4 = payload[4];
+    byte num5 = payload[5];
+    byte num6 = payload[6];
+    
+    byte r = (asciiToNum((byte)payload[2]) + (asciiToNum((byte)payload[1]) << 4));
+    byte g = (asciiToNum((byte)payload[4]) + (asciiToNum((byte)payload[3]) << 4));
+    byte b = (asciiToNum((byte)payload[6]) + (asciiToNum((byte)payload[5]) << 4));
+    setAllNeo(r,g,b);
   }
   else
   {
   }
+}
+
+byte asciiToNum(byte asciiChar)
+{
+  byte num = 0;
+  if (asciiChar > 0x39)
+  {
+    num = asciiChar - 0x37;
+  }
+  else
+  {
+    num = asciiChar - 0x30;
+  }
+  num &= 0x0f;
+  return num;
+}
+
+void setAllNeo(byte r, byte g, byte b)
+{
+  strip.setPixelColor(0, r, g, b);
+  strip.setPixelColor(1, r, g, b);
+  strip.setPixelColor(2, r, g, b);
+  strip.setPixelColor(3, r, g, b);
+  strip.setPixelColor(4, r, g, b);
+  strip.setPixelColor(5, r, g, b);
+  strip.setPixelColor(6, r, g, b);
+  strip.setPixelColor(7, r, g, b);
+  strip.setPixelColor(8, r, g, b);
+  strip.setPixelColor(9, r, g, b);
+  strip.setPixelColor(10, r, g, b);
+  strip.setPixelColor(11, r, g, b);
+  strip.setPixelColor(12, r, g, b);
+  strip.show();
 }
 
 WiFiClient wifiClient;
@@ -48,9 +92,9 @@ void reconnect() {
     if (client.connect("arduinoClient")) {
       Serial.println("connected");
       // Once connected, publish an announcement...
-      client.publish("/raspi", "Lights Relay Connected");
+      client.publish("raspi", "Lights Relay Connected");
       // ... and resubscribe
-      client.subscribe("/home/lights/1");
+      client.subscribe("home/leds/1");
     } else {
       Serial.print("failed, rc=");
       Serial.print(client.state());
@@ -65,13 +109,10 @@ void setup()
 {
   Serial.begin(115200);
 
-//  pinMode(26, OUTPUT);
-//  pinMode(27, OUTPUT);
-
   strip.begin();
   strip.clear();
 
-  int count = 0;
+  int count = -1;
   bool flip = false;
 
   Serial.print("Connecting to ");
@@ -96,6 +137,8 @@ void setup()
     delay(500);
     Serial.print(".");
   }
+  strip.clear();
+  strip.show();
   // Print local IP address and start web server
   Serial.println("");
   Serial.println("WiFi connected.");
@@ -112,22 +155,8 @@ void setup()
 
 void loop()
 {
-  strip.clear();
-//  if (!client.connected()) {
-//    reconnect();
-//  }
-//  client.loop();
-  
-  
-
-//  strip.clear();
-//  Serial.println("Clearing colors");
-//  for (int i = 0; i < 12; i++) {
-//    strip.setPixelColor(i, count%255, (count*2)%255, (count*3)%255);
-//
-//    strip.show();
-//    count = count + rand()*10;
-//
-//    delay(50);
-//  }
+  if (!client.connected()) {
+    reconnect();
+  }
+  client.loop();
 }
