@@ -30,14 +30,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
   Serial.println();
 
   if (payload[0] == '#')
-  {
-    byte num1 = payload[1];
-    byte num2 = payload[2];
-    byte num3 = payload[3];
-    byte num4 = payload[4];
-    byte num5 = payload[5];
-    byte num6 = payload[6];
-    
+  { 
     byte r = (asciiToNum((byte)payload[2]) + (asciiToNum((byte)payload[1]) << 4));
     byte g = (asciiToNum((byte)payload[4]) + (asciiToNum((byte)payload[3]) << 4));
     byte b = (asciiToNum((byte)payload[6]) + (asciiToNum((byte)payload[5]) << 4));
