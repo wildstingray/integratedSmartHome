@@ -28,9 +28,9 @@ Window {
                 console.log(topic + "   " + payload);
             }
 
-            onMessageReceived: {
-                smartDevicesModel.newMessage(topic, message)
-            }
+//            onMessageReceived: {
+//                smartDevicesModel.newMessage(topic, message)
+//            }
         }
 
         Rectangle {

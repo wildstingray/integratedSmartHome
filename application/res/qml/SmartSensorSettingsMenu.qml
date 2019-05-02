@@ -44,7 +44,7 @@ Item {
         anchors.left: nameTextField.left
         anchors.verticalCenter: ssidItem.verticalCenter
         anchors.leftMargin: 5
-        text: isEditing ? smartDevicesModel.data(givenIndex, SmartDevicesModel.TopicString) : sensorSettingsItem.defaultTopic + "/" + smartDevicesModel.objectCounter
+        text: isEditing ? smartDevicesModel.data(givenIndex, SmartDevicesModel.TopicString) : sensorSettingsItem.defaultTopic + "/" + smartDevicesModel.objectCounter + "/#"
         width: nameTextField.width
         horizontalAlignment: nameTextField.horizontalAlignment
         font.pixelSize: 24

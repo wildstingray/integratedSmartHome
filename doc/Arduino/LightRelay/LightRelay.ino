@@ -6,17 +6,15 @@
 // Update these with values suitable for your network.
 byte mac[]    = {  0xDE, 0xED, 0xBA, 0xFE, 0xFE, 0xED };
 IPAddress ip(192, 168, 1, 125);
-IPAddress server(192, 168, 1, 121);
+IPAddress server(192, 168, 43, 18);
 
 //Wifi Stuff
-const char* ssid     = "Greasy Chewbacca";
-const char* password = "123456789xd";
+const char* ssid     = "Jesses10+";
+const char* password = "gobison!";
 WiFiServer wifiCon(80);
-String header;
-String output26State = "off";
-String output27State = "off";
-const int output26 = 26;
-const int output27 = 27;
+
+WiFiClient wifiClient;
+PubSubClient client(wifiClient);
 
 void callback(char* topic, byte* payload, unsigned int length) {
   Serial.print("Message arrived [");
@@ -29,18 +27,17 @@ void callback(char* topic, byte* payload, unsigned int length) {
 
   if (payload[0] == 0x30)
   {
-    digitalWrite(output26, LOW);
-    digitalWrite(output27, HIGH);
+    digitalWrite(26, LOW);
+    digitalWrite(27, HIGH);
+    digitalWrite(25, LOW);
   }
   else
   {
-    digitalWrite(output26, HIGH);
-    digitalWrite(output27, LOW);
+    digitalWrite(26, HIGH);
+    digitalWrite(27, LOW);
+    digitalWrite(25, HIGH);
   }
 }
-
-WiFiClient wifiClient;
-PubSubClient client(wifiClient);
 
 void reconnect() {
   // Loop until we're reconnected
@@ -50,9 +47,9 @@ void reconnect() {
     if (client.connect("arduinoClient")) {
       Serial.println("connected");
       // Once connected, publish an announcement...
-      client.publish("/raspi","Lights Relay Connected");
+      client.publish("raspi","Lights Relay Connected");
       // ... and resubscribe
-      client.subscribe("/home/lights/1");
+      client.subscribe("home/lights/1");
     } else {
       Serial.print("failed, rc=");
       Serial.print(client.state());
@@ -67,11 +64,13 @@ void setup()
 {
   Serial.begin(115200);
 
-  pinMode(output26, OUTPUT);
-  pinMode(output27, OUTPUT);
+  pinMode(26, OUTPUT);
+  pinMode(27, OUTPUT);
+  pinMode(25, OUTPUT);
   // Set outputs to LOW
-  digitalWrite(output26, LOW);
-  digitalWrite(output27, LOW);
+  digitalWrite(26, LOW);
+  digitalWrite(27, LOW);
+  digitalWrite(25, LOW);
 
   Serial.print("Connecting to ");
   Serial.println(ssid);
