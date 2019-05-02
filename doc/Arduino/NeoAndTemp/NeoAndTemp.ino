@@ -19,6 +19,10 @@ char valBuff[40];
 
 unsigned long currentMs = 0;
 
+byte r = 0;
+byte g = 0;
+byte b = 0;
+
 WiFiClient wifiClient;
 PubSubClient client(wifiClient);
 
@@ -45,10 +49,10 @@ void callback(char* topic, byte* payload, unsigned int length) {
 
   if (payload[0] == '#')
   { 
-    byte r = (asciiToNum((byte)payload[2]) + (asciiToNum((byte)payload[1]) << 4));
-    byte g = (asciiToNum((byte)payload[4]) + (asciiToNum((byte)payload[3]) << 4));
-    byte b = (asciiToNum((byte)payload[6]) + (asciiToNum((byte)payload[5]) << 4));
-    setAllNeo(r,g,b);
+    r = (asciiToNum((byte)payload[2]) + (asciiToNum((byte)payload[1]) << 4));
+    g = (asciiToNum((byte)payload[4]) + (asciiToNum((byte)payload[3]) << 4));
+    b = (asciiToNum((byte)payload[6]) + (asciiToNum((byte)payload[5]) << 4));
+//    setAllNeo(r,g,b);/
   }
 }
 
@@ -159,6 +163,21 @@ void loop()
   if (!client.connected()) {
     reconnect();
   }
+
+  static unsigned long lastMs1 = 0;
+  if ((currentMs - lastMs1) > 1000)
+  {
+    static int index = 0;
+    index = (index + 1) % 2;
+    strip.clear();
+    for (int i = 0; i < LED_COUNT/2; i++)
+    {
+      strip.setPixelColor((i * 2) + (index), r, g, b);
+    }
+    lastMs1 = currentMs;
+    strip.show();
+  }
+  
   client.loop();
   static unsigned long lastMs3 = 0;
   currentMs = millis();
