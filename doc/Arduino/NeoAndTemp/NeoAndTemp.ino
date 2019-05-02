@@ -185,28 +185,18 @@ void loop()
         r2 = r;
         g2 = g;
         b2 = b;
-        strip.setPixelColor(0, r, g, b);
-        strip.setPixelColor(1, r, g, b);
-        strip.setPixelColor(2, r, g, b);
-        strip.setPixelColor(3, r, g, b);
-        strip.setPixelColor(4, r, g, b);
-        strip.setPixelColor(5, r, g, b);
-        strip.setPixelColor(6, r, g, b);
-        strip.setPixelColor(7, r, g, b);
-        strip.setPixelColor(8, r, g, b);
-        strip.setPixelColor(9, r, g, b);
-        strip.setPixelColor(10, r, g, b);
-        strip.setPixelColor(11, r, g, b);
-        strip.show();
+        setAllNeo(r,g,b);
         lastMs1 = currentMs;
       }
       break;
     case 1:
       if ((currentMs - lastMs1) > 50)
       {
+        static int lastInd = 0;
         index = (index + 1) % 12;
-        strip.clear();
+        strip.setPixelColor(lastInd, r, g, b);
         strip.setPixelColor(index, r, g, b);
+        lastInd = index;
         strip.show();
         lastMs1 = currentMs;
       }
@@ -236,7 +226,7 @@ void loop()
   }
 
   static unsigned long lastMs3 = 0;
-  if ((currentMs - lastMs3) > 2000)
+  if ((currentMs - lastMs3) > 10000)
   {
     lastMs3 = currentMs;
     //Read values
