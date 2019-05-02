@@ -17,10 +17,6 @@ float celsius = 0;
 float fahrenheit = 0;
 char valBuff[40];
 
-byte r = 0;
-byte g = 0;
-byte b = 0;
-
 unsigned long currentMs = 0;
 
 WiFiClient wifiClient;
@@ -36,7 +32,6 @@ IPAddress server(192, 168, 43, 18);
 //Wifi Stuff
 const char* ssid     = "Jesses10+";
 const char* password = "gobison!";
-WiFiServer wifiCon(80);
 String header;
 
 void callback(char* topic, byte* payload, unsigned int length) {
@@ -50,12 +45,10 @@ void callback(char* topic, byte* payload, unsigned int length) {
 
   if (payload[0] == '#')
   { 
-    r = (asciiToNum((byte)payload[2]) + (asciiToNum((byte)payload[1]) << 4));
-    g = (asciiToNum((byte)payload[4]) + (asciiToNum((byte)payload[3]) << 4));
-    b = (asciiToNum((byte)payload[6]) + (asciiToNum((byte)payload[5]) << 4));
-  }
-  else
-  {
+    byte r = (asciiToNum((byte)payload[2]) + (asciiToNum((byte)payload[1]) << 4));
+    byte g = (asciiToNum((byte)payload[4]) + (asciiToNum((byte)payload[3]) << 4));
+    byte b = (asciiToNum((byte)payload[6]) + (asciiToNum((byte)payload[5]) << 4));
+    setAllNeo(r,g,b);
   }
 }
 
@@ -97,7 +90,7 @@ void reconnect() {
   while (!client.connected()) {
     Serial.print("Attempting MQTT connection...");
     // Attempt to connect
-    if (client.connect("arduinoClient")) {
+    if (client.connect("aClient69")) {
       Serial.println("connected");
       // Once connected, publish an announcement...
       client.publish("raspi", "Lights Relay Connected");
@@ -153,7 +146,6 @@ void setup()
   Serial.println("WiFi connected.");
   Serial.println("IP address: ");
   Serial.println(WiFi.localIP());
-  wifiCon.begin();
 
   client.setServer(server, 1883);
   client.setCallback(callback);
@@ -168,64 +160,8 @@ void loop()
     reconnect();
   }
   client.loop();
-
-  static int ledMode = 0;
-
-  static unsigned long lastMs1 = 0;
-  currentMs = millis();
-  static int index = 0;
-  switch (ledMode)
-  {
-    static byte r2 = 0;
-    static byte g2 = 0;
-    static byte b2 = 0;
-    case 0:
-      if ((r2 != r) || (g2 != g) || (b2 != b) || ((currentMs - lastMs1) > 10000))
-      {
-        r2 = r;
-        g2 = g;
-        b2 = b;
-        setAllNeo(r,g,b);
-        lastMs1 = currentMs;
-      }
-      break;
-    case 1:
-      if ((currentMs - lastMs1) > 50)
-      {
-        static int lastInd = 0;
-        index = (index + 1) % 12;
-        strip.setPixelColor(lastInd, r, g, b);
-        strip.setPixelColor(index, r, g, b);
-        lastInd = index;
-        strip.show();
-        lastMs1 = currentMs;
-      }
-      break;
-    case 2:
-      if ((currentMs - lastMs1) > 500)
-      {
-        index = (index + 1) % 2;
-        strip.clear();
-        for (int i = 0; i < LED_COUNT/2; i++)
-        {
-          strip.setPixelColor((i * 2) + (index), r, g, b);
-        }
-        lastMs1 = currentMs;
-        strip.show();
-      }
-      break;
-    default:
-      break;
-  }
-
-  static unsigned long lastMs2 = 0;
-  if ((currentMs - lastMs2) > 10000)
-  {
-    ledMode = (ledMode + 1) % 3;
-    lastMs2 = currentMs;
-  }
-
   static unsigned long lastMs3 = 0;
+  currentMs = millis();
   if ((currentMs - lastMs3) > 10000)
   {
     lastMs3 = currentMs;

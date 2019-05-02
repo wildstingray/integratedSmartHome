@@ -11,7 +11,6 @@ IPAddress server(192, 168, 43, 18);
 //Wifi Stuff
 const char* ssid     = "Jesses10+";
 const char* password = "gobison!";
-WiFiServer wifiCon(80);
 
 WiFiClient wifiClient;
 PubSubClient client(wifiClient);
@@ -44,7 +43,7 @@ void reconnect() {
   while (!client.connected()) {
     Serial.print("Attempting MQTT connection...");
     // Attempt to connect
-    if (client.connect("arduinoClient")) {
+    if (client.connect("arduinoClient3")) {
       Serial.println("connected");
       // Once connected, publish an announcement...
       client.publish("raspi","Lights Relay Connected");
@@ -84,7 +83,6 @@ void setup()
   Serial.println("WiFi connected.");
   Serial.println("IP address: ");
   Serial.println(WiFi.localIP());
-  wifiCon.begin();
 
   client.setServer(server, 1883);
   client.setCallback(callback);
